@@ -1,0 +1,60 @@
+User will be promted to enter a day as a two or three letter short form or the full word 
+    The day entry will be called with a while loop that runs as long as the entry is incorrect
+    a switch statement will validate each entry when a new value is given
+    if the validated entry is on the weekend the rate will be discounted
+
+User will be prompted for an arrival time
+    The arrival time will be validated:
+    * as greater than zero
+    * as less than 2400
+    * to have a minute value of less than 60
+
+User will be promted for a departure time
+    The departure time will be validated:
+    * as greater than the arrival time
+    * as 2400 or less
+    * to have a minute value of less than 60
+
+The arrival and departure time hours (first two digits) will be converted to minutes and added to the minutes (second two digits)
+    and the total stay calculated
+
+The stay will be divided into periods of 15 minutes, with any remainder adding another period
+
+The total periods will be multiplied by the appropriate rate resulting in the total charge up to a maximum of $15
+
+The Day of Week, Parking duration in minutes, rate and Amount charged wll be displayed.
+
+Test 01:
+Please enter the day of the week : MOn                                          // accepted MOn and converted it to Mon
+Please enter the vehicle’s arrival time as HHMM : 1                             // accepted 1 as arrival
+Please enter the vehicle’s departure time as HHMM : 2                           // accepted 2 as departure
+Day of Week: Mon                                                                // displayed correct day
+Parking duration in minutes: 1, rate: $1.25                                     // displayed correct duration and weekday rate
+Amount charged: $1.25                                                           // displayed correct charge
+
+Test 02:
+Please enter the day of the week : feryjet                                      // rejected feryjet 
+Please use three letter day abbreviation: Mon, Tue, Wed, Thu, Fri, Sat or Sun   // prompted user with examples of correct input
+Please enter the day of the week : Tue                                          // accepted Tue
+Please enter the vehicle’s arrival time as HHMM : 0587                          // rejected 87 as arrival minutes
+Please enter the vehicle’s arrival time as HHMM : 0557                          // accepted 0557 as arrival
+Please enter the vehicle’s departure time as HHMM : 0453                        // rejected 0453 as too early for departure
+Make certain the the departure time is later than arrival.                      // prompted user with helpful hint
+Please enter the vehicle’s departure time as HHMM : 0455                        // rejected 0455 as well
+Make certain the the departure time is later than arrival.                      
+Please enter the vehicle’s departure time as HHMM : 0655                        // accepted 0655 as departure
+Day of Week: Tue                                                                // displayed correct day
+Parking duration in minutes: 58, rate: $1.25                                    // displayed correct duration and weekday rate
+Amount charged: $5.0                                                            // displayed correct charge
+
+Test 03:
+Please enter the day of the week : ui                                           // rejected ui
+Please use three letter day abbreviation: Mon, Tue, Wed, Thu, Fri, Sat or Sun   // prompted ...
+Please enter the day of the week : Sat                                          // accepted Sat
+Please enter the vehicle’s arrival time as HHMM : 2545                          // rejected too high arrival
+Please enter the vehicle’s arrival time as HHMM : 745                           // accepted correct 3 digit arrival
+Please enter the vehicle’s departure time as HHMM : 2642                        // rejected too high departure
+Please enter the vehicle’s departure time as HHMM : 1642                        // accepted correct departure
+Day of Week: Sat                                                                // displayed correct day
+Parking duration in minutes: 537, rate: $0.5                                    // displayed correct duration and weekend rate
+Amount charged: $15.0                                                           // displayed correct maximum charge
