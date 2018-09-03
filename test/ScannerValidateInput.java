@@ -52,7 +52,7 @@ public class ScannerValidateInput {
 
 import java.util.Scanner;
 
-public class ScannerValidateInput {
+/* public class ScannerValidateInput {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 String confirmItem = "";
@@ -68,6 +68,48 @@ while (!confirmItem.matches("[ynYN]")) {
             }
             // 
         } 
-        // System.out.println();
+        
+    }
+} */
+
+public class ScannerValidateInput {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int tempID = -1;
+        int tempQty = 0;
+        do {
+            // confirmItem = ""; // reset these for the next order placed 
+            // continueShopping = ""; // reset these for the next order placed
+            System.out.printf("%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
+            while (!input.hasNextInt()) { // if the user does not enter an int
+                String str = input.nextLine(); // assign the entered line as a string 
+                System.out.printf("\"%s\" is not a valid number.\n", str); //
+                System.out.printf("%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
+                // not the kind of repetition your looking for
+            }
+            while (input.nextInt() < 1 || input.nextInt() > 3) { // validate the entries to ensure it matched a product ID
+                
+                System.out.printf("%d is not a valid number.\n", input.nextInt()); //
+                System.out.printf("%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
+                tempID = input.nextInt();
+            }
+        } while (tempID < 1 || tempID > 3 /* || !input.hasNextInt() */);
+        tempID --; // correct to match the array indices
+        
+        // Request customer select quantity of selected bulb
+        do {
+            System.out.printf("%nPlease enter the number of %ss you would like to purchase.%n\tEnter QTY here: ", "productID[1][tempID]");
+            while (!input.hasNextInt()) { // if the user does not enter an int
+                String str = input.next(); // assign the entered line as a string 
+                System.out.printf("\"%s\" is not a valid quantity.\n", str); //
+                System.out.printf("%nPlease enter the number of %ss you would like to purchase.%n\tEnter QTY here: ", "productID[1][tempID]");
+                // not the kind of repetition your looking for
+            }
+            while (tempQty < 1) {
+                System.out.printf("\"%d\" is not a valid quantity.\n", tempQty); //
+                System.out.printf("%nPlease enter the number of %ss you would like to purchase.%n\tEnter QTY here: ", "productID[1][tempID]");
+                tempQty = input.nextInt();
+            }
+        } while (tempQty < 1); // validate the entries to ensure it matched a product ID
     }
 }

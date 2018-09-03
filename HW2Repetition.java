@@ -40,8 +40,10 @@ public class HW2Repetition{
         String continueShopping = ""; // a non-valid entry to get the while loop started
 
         try { 
-            while (!finishedShopping){ // this loop will run until the boolean is true
+            while (!finishedShopping){
+                // this loop will run until the boolean is true
                 // Will keep asking for orders until user says no or cart is at maximum (15) 
+                
                 // Print out product catalog using printf and a for loop to populate the lines
                 // A little decoration to make it pretty
                 System.out.printf("%n|--------------------------------------|%n| ID\tDescription\t\tPrice  |%n|--------------------------------------|%n");
@@ -56,29 +58,34 @@ public class HW2Repetition{
                     continueShopping = ""; // reset these for the next order placed
                     System.out.printf("%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
                     while (!input.hasNextInt()) { // if the user does not enter an int
-                        String str = input.next(); // assign the entered line as a string 
-                        System.out.printf("\"%s\" is not a valid number.\n", str); //
-                        System.out.printf("%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
-                        // not the kind of repetition your looking for
+                        String str = input.nextLine(); // assign the entered line as a string 
+                        System.out.printf("\"%s\" is not a valid number.\n%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ", str);  // not the kind of repetition your looking for, I know...
                     }
-                    tempID = input.nextInt()-1; // correct the product IDs to match the array indices
-                } while (tempID < 0 || tempID > 2); // validate the entries to ensure it matched a product ID
+                    while (tempID < 1 || tempID > 3) { // validate the entries to ensure it matched a product ID
+                        tempID = input.nextInt();
+                        if (tempID < 1 || tempID > 3) {
+                            System.out.printf("%d is not a valid number.\n%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ", tempID);
+                        }
+                    }
+                } while (tempID < 1 || tempID > 3 );
+                tempID--; // correct to match the array indices
                 
                 // Request customer select quantity of selected bulb
                 do {
                     System.out.printf("%nPlease enter the number of %ss you would like to purchase.%n\tEnter QTY here: ", productID[1][tempID]);
-                    while (!input.hasNextInt()){
-                        String str = input.nextLine();
-                        System.out.printf("\"%s\" is not a valid number.%n", str);
-                        System.out.printf("%nPlease enter a valid positive number.%n\tEnter QTY here: ");
+                    while (!input.hasNextInt()) { // if the user does not enter an int
+                        String str = input.next(); // assign the entered line as a string 
+                        System.out.printf("\"%s\" is not a valid quantity.\n", str); //
+                        System.out.printf("%nPlease enter the number of %ss you would like to purchase.%n\tEnter QTY here: ", productID[1][tempID]);
+                        // not the kind of repetition your looking for
                     }
-                tempQty = input.nextInt();
-                } while (tempQty < 1); // validate the qty to ensure it is at least one
-
+                    tempQty = input.nextInt(); // correct the product IDs to match the array indices
+                } while (tempQty < 0); // validate the entries to ensure it matched a product ID
+                
                 plural = tempQty > 1 ? "s" : ""; // add an "s" to qty's bigger than 1 
 
                 // clear scanner
-                input.nextLine(); // apparently there was an empty String hiding out in the scanner, I think this gets it out
+                input.nextLine(); // apparently there was an empty String hiding out in the scanner, I think this clears it
                 
                 // Request customer confirmation of selection
                 while (!confirmItem.matches("[ynYN]")) {
@@ -88,7 +95,7 @@ public class HW2Repetition{
                     if (confirmItem.matches("[yY]")) { // validate for yY
                         cart[0][cartIndex] = tempID; // add item to cart
                         cart[1][cartIndex] = tempQty; // add qty to cart
-                        cartIndex++; // iterate cart index so that it's not overwritten
+                        cartIndex++; // iterate cart index 
                         System.out.printf("%nYou have added %d %s%s to your cart.", tempQty, productID[1][tempID] ,plural);
                     } else if (confirmItem.matches("[nN]")) { // verify operation completed / canceled
                         System.out.printf("%nYou have NOT added %d %s%s to your cart.", tempQty, productID[1][tempID] ,plural); 
@@ -99,10 +106,20 @@ public class HW2Repetition{
                 tempID = -1; // reset for the next order
                 tempQty = 0; // reset for the next order
                 
+                for (int i = 0; i <= (cartIndex-1); i++){ // iterate through cart items, cart index = line items
+                    cartTotalItems += cart[1][i]; // add all qtys together for total products ordered
+                }
+                System.out.printf("%n%nYour shopping cart contains %d item%s.%nQty\tDescription\t\tPrice\t    Total%n-------------------------------------------------", cartTotalItems, plural);
+                for (int i = 0; i <= (cartIndex-1); i++){
+                    // 
+                    System.out.printf("%n%s\t%s\t$%4.2f\t$%8.2f",cart[1][i], productID[1][cart[0][i]], productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
+                }
+                System.out.printf("%n-------------------------------------------------");
+                cartTotalItems = 0;
+                
                 // Request customer to continue shopping
-                // add validation here
                 while (!continueShopping.matches("[ynYN]")) {  // will only accept y or Y or n or N  for input, y or Y closes this loop and returns to the outer loop
-                    System.out.printf("%nWould you like to continue shopping?%nEnter Y or N Here: ");
+                    System.out.printf("%nWould you like to continue shopping?%n\tEnter Y or N Here: ");
                     continueShopping = input.nextLine().toLowerCase();
                     if (continueShopping.matches("[nN]")) {
                         finishedShopping = true; // n or N closes the outer loop and send the customer to checkout
@@ -128,7 +145,7 @@ public class HW2Repetition{
         // System.out.print(" DEBUGGER shippingCost = " + shippingCost);
         // 
         grandTotal = (subTotal-(subTotal * discount) + shippingCost);
-        System.out.printf("%n%nYour shopping cart contains %d items.%nQty\tDescription\t\tPrice\t    Total%n-------------------------------------------------", cartTotalItems);
+        System.out.printf("%n%nYour shopping cart contains %d item%s.%nQty\tDescription\t\tPrice\t    Total%n-------------------------------------------------", cartTotalItems, plural);
         for (int i = 0; i <= (cartIndex-1); i++){
             // 
             System.out.printf("%n%s\t%s\t$%4.2f\t$%8.2f",cart[1][i], productID[1][cart[0][i]], productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
