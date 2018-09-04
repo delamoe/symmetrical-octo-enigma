@@ -172,15 +172,15 @@ public class HW2Repetition {
                 }
 
                 // cartTotalItems will be recalculated in next iteration
-                cartTotalItems = 0;
                 if (finishedShopping && subTotal > 0) {
                     System.out.printf("%n |------------------------------------------------|");
                     System.out.printf(
-                            "%n | Price of products\t\t\t$%8.2f |%n | Discount %2.0f%%\t\t\t\t$%8.2f |%n | Net purchase amount\t\t\t$%8.2f |%n | Shipping cost\t\t\t$%8.2f |%n | Total\t\t\t\t$%8.2f |",
-                            subTotal, discount * 100, subTotal * discount, subTotal - subTotal * discount, shippingCost,
-                            grandTotal);
-                    System.out.printf("%n |------------------------------------------------|%n");
-                }
+                        "%n | Price of products\t\t\t$%8.2f |%n | Discount %2.0f%%\t\t\t\t$%8.2f |%n | Net purchase amount\t\t\t$%8.2f |%n | Shipping cost\t\t\t$%8.2f |%n | Total\t\t\t\t$%8.2f |",
+                        subTotal, discount * 100, subTotal * discount, subTotal - subTotal * discount, shippingCost,
+                        grandTotal);
+                        System.out.printf("%n |------------------------------------------------|%n");
+                    }
+                subTotal = cartTotalItems = 0;
             }
         }
 
