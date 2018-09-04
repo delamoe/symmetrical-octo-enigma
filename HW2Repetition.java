@@ -51,12 +51,13 @@ public class HW2Repetition {
 
                 // Print out product catalog using printf and a for loop to populate the lines
                 // A little printf decoration to make it pretty
-                System.out.printf(
-                        "%n|--------------------------------------|%n| ID\tDescription\t\tPrice  |%n|--------------------------------------|%n");
+                System.out.printf("%n%n     |-----------------------------------------|");
+                System.out.printf("%n     | ID\tDescription\t\tPrice  |");
+                System.out.printf("%n     |-----------------------------------------|");
                 for (int i = 0; i <= productID.length; i++) {
-                    System.out.printf("| %s\t%s:\t$ %3.2f |%n", productID[0][i], productID[1][i], productPrice[i]);
+                    System.out.printf("%n     | %s\t%s:\t$ %3.2f |", productID[0][i], productID[1][i], productPrice[i]);
                 }
-                System.out.printf("|--------------------------------------|%n");
+                System.out.printf("%n     |-----------------------------------------|%n");
 
                 // Request customer to select type of bulb
                 confirmItem = "";
@@ -158,26 +159,27 @@ public class HW2Repetition {
 
                 String cartOrShipment = !finishedShopping ? "shopping cart" : "shipment";
 
-                System.out.printf("%n%n  Your %s contains %d item%s.%n", cartOrShipment, cartTotalItems, plural);
+                System.out.printf("%n%n   Your %s contains %d item%s.%n", cartOrShipment, cartTotalItems, plural);
                 if (subTotal > 0) {
-                    System.out.printf(
-                            "| Qty\tDescription\t\tPrice\t    Total |%n|-------------------------------------------------|");
+                    System.out.printf(" | Qty\tDescription\t\tPrice\t    Total |");
+                    System.out.printf("%n |------------------------------------------------|");
                     for (int i = 0; i <= (cartIndex - 1); i++) {
                         //
-                        System.out.printf("%n| %s\t%s\t$%4.2f\t$%8.2f |", cart[1][i], productID[1][cart[0][i]],
+                        System.out.printf("%n | %s\t%s\t$%4.2f\t$%8.2f |", cart[1][i], productID[1][cart[0][i]],
                                 productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
                     }
-                    System.out.printf("%n|-------------------------------------------------|");
+                    System.out.printf("%n |------------------------------------------------|");
                 }
 
                 // cartTotalItems will be recalculated in next iteration
                 cartTotalItems = 0;
                 if (finishedShopping && subTotal > 0) {
+                    System.out.printf("%n |------------------------------------------------|");
                     System.out.printf(
-                            "%n| Price of products\t\t\t$%8.2f |%n| Discount %2.0f%%\t\t\t\t$%8.2f |%n| Net purchase amount\t\t\t$%8.2f |%n| Shipping cost\t\t\t\t$%8.2f |%n| Total\t\t\t\t\t$%8.2f |",
+                            "%n | Price of products\t\t\t$%8.2f |%n | Discount %2.0f%%\t\t\t\t$%8.2f |%n | Net purchase amount\t\t\t$%8.2f |%n | Shipping cost\t\t\t$%8.2f |%n | Total\t\t\t\t$%8.2f |",
                             subTotal, discount * 100, subTotal * discount, subTotal - subTotal * discount, shippingCost,
                             grandTotal);
-                    System.out.printf("%n|-------------------------------------------------|%n");
+                    System.out.printf("%n |------------------------------------------------|%n");
                 }
             }
         }
