@@ -6,35 +6,53 @@ public class HW2Repetition {
         Scanner input = new Scanner(System.in);
 
         // Create product database
-        // A multidimensional array to hold the product id and desriptions separately
-        // but with the same index
-        String[][] productID = { { "1", "2", "3" },
-                { "13 watt Light Bulb", "18 watt Light Bulb", "23 watt Light Bulb" } };
-        // indexes in this array correspond to the product id and name array
+        // A multidimensional array to hold the product id,
+        // desriptions and prices separately but with the same index
+        // (maybe this is better done with an object instead???)
+        String[][] productID = {
+            { "1", "2", "3" },
+            { "13 watt Light Bulb", "18 watt Light Bulb", "23 watt Light Bulb" } };
+        // --- how to map from String to Double? --- //
         double[] productPrice = { 1.5, 3.0, 4.0 };
 
-        // Initialize a boolean to false in order to allow closing the loop
+        // Initialize a boolean to false in order to allow closing the loop later
         boolean finishedShopping = false;
-        // Initialize a multidimensional array to use as the shopping cart to hold
-        // product ID and QTY
+        
+        // Initialize a multidimensional array to use as
+        // a shopping cart to hold product ID and QTY
         int[][] cart = new int[15][15];
-        int cartIndex = 0; // incrementing will allow me to count only the updated indexes in the cart
-        int cartTotalItems = 0; // I'll be able to multiply within each (for) loop and add each items extended
-                                // price upon iteration
-        int tempID = -1; // a non-valid entry to get the while loop started
-        int tempQty = 0; // a non-valid entry to get the while loop started
-        double subTotal = 0, discount = 0, shippingCost = 0, grandTotal = 0; // will need these later
-        String plural = ""; // when qty is > 1, this will add an "s" to the prouct names
-        String confirmItem = ""; // a non-valid entry to get the while loop started
-        String continueShopping = ""; // a non-valid entry to get the while loop started
+        
+        // incrementing on each added line item
+        int cartIndex = 0;
+
+        // use in a for loop with quantity to get total items and extended prices
+        int cartTotalItems = 0;
+
+        // non-valid values to get the while loops started
+        int tempID = -1;
+        int tempQty = 0;
+        String confirmItem = "";
+        String continueShopping = "";
+
+        // I thought I read that I could initialize these
+        // without assigning values, but it is not working...
+        double subTotal = 0, discount = 0, shippingCost = 0, grandTotal = 0;
+        
+        // when qty is > 1, this will add an "s" to the prouct names
+        String plural = "";
+
 
         try {
+            // this loop will run until the boolean is true
             while (!finishedShopping) {
-                // this loop will run until the boolean is true
-                // Will keep asking for orders until user says no or cart is at maximum (15)
-
+                
+                // the array only holds 15 items, the loop
+                // close at this point
+                if (cartIndex > 13)
+                    finishedShopping = true;
+                
                 // Print out product catalog using printf and a for loop to populate the lines
-                // A little decoration to make it pretty
+                // A little printf decoration to make it pretty
                 System.out.printf(
                         "%n|--------------------------------------|%n| ID\tDescription\t\tPrice  |%n|--------------------------------------|%n");
                 for (int i = 0; i <= productID.length; i++) {
@@ -107,9 +125,7 @@ public class HW2Repetition {
                     }
                 }
 
-                if (cartIndex > 14)
-                    finishedShopping = true; // the array only holds 15 items, the sale will complete autonatically at
-                                             // this point
+                
                 tempID = -1; // reset for the next order
                 tempQty = 0; // reset for the next order
 
@@ -150,6 +166,9 @@ public class HW2Repetition {
                             productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
                 }
                 System.out.printf("%n-------------------------------------------------");
+                
+                // cartTotalItems will be recalculated in next iteration
+                cartTotalItems = 0;
                 if (finishedShopping) {
                     System.out.printf(
                         "%nPrice of products\t\t\t$%8.2f%nDiscount %2.0f%%\t\t\t\t$%8.2f%nNet purchase amount\t\t\t$%8.2f%nShipping cost\t\t\t\t$%8.2f%nTotal\t\t\t\t\t$%8.2f%n",
