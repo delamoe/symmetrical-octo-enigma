@@ -60,18 +60,25 @@ public class HW2Repetition {
                 }
                 System.out.printf("|--------------------------------------|%n");
 
-                // Request customer select type of bulb
+                // Request customer to select type of bulb
                 do {
                     // reset these for the next order placed
                     confirmItem = "";
                     continueShopping = "";
+                    // prompt user...
                     System.out.printf(
-                            "%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
-                    while (!input.hasNextInt()) { // if the user does not enter an int
-                        String str = input.nextLine(); // assign the entered line as a string
+                        "%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ");
+                    
+                    // Attempting some input validation here.
+                    // if the user does not enter an int
+                    while (!input.hasNextInt()) { 
+                        // assign the entered line as a string
+                        String str = input.nextLine();
+                        // and print out an error message, then re-prompt
                         System.out.printf(
                                 "\"%s\" is not a valid number.\n%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ",
-                                str); // not the kind of repetition your looking for, I know...
+                                str);
+                        input.next();
                     }
                     while (tempID < 1 || tempID > 3) { // validate the entries to ensure it matched a product ID
                         tempID = input.nextInt();
@@ -79,6 +86,7 @@ public class HW2Repetition {
                             System.out.printf(
                                     "%d is not a valid number.\n%nPlease select a light bulb by entering the product ID 1, 2 or 3.%n\tEnter ID here: ",
                                     tempID);
+                            input.next();
                         }
                     }
                 } while (tempID < 1 || tempID > 3);
