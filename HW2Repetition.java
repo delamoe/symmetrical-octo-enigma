@@ -159,27 +159,28 @@ public class HW2Repetition {
 
                 String cartOrShipment = !finishedShopping ? "shopping cart" : "shipment";
 
-                System.out.printf("%n%n   Your %s contains %d item%s.%n", cartOrShipment, cartTotalItems, plural);
+                System.out.printf("%n%n   Your %s contains %d item%s.", cartOrShipment, cartTotalItems, plural);
                 if (subTotal > 0) {
-                    System.out.printf(" | Qty\tDescription\t\tPrice\t    Total |");
+                    System.out.printf("%n | Qty\tDescription\t\tPrice\t    Total |");
                     System.out.printf("%n |------------------------------------------------|");
                     for (int i = 0; i <= (cartIndex - 1); i++) {
                         //
-                        System.out.printf("%n | %s\t%s\t$%4.2f\t$%8.2f |", cart[1][i], productID[1][cart[0][i]],
-                                productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
+                        System.out.printf("%n | %s\t%s\t$%4.2f\t$%8.2f |"
+                        , cart[1][i], productID[1][cart[0][i]], productPrice[cart[0][i]], (cart[1][i] * productPrice[cart[0][i]]));
                     }
                     System.out.printf("%n |------------------------------------------------|");
                 }
 
-                // cartTotalItems will be recalculated in next iteration
                 if (finishedShopping && subTotal > 0) {
-                    System.out.printf("%n |------------------------------------------------|");
-                    System.out.printf(
-                        "%n | Price of products\t\t\t$%8.2f |%n | Discount %2.0f%%\t\t\t\t$%8.2f |%n | Net purchase amount\t\t\t$%8.2f |%n | Shipping cost\t\t\t$%8.2f |%n | Total\t\t\t\t$%8.2f |",
-                        subTotal, discount * 100, subTotal * discount, subTotal - subTotal * discount, shippingCost,
-                        grandTotal);
-                        System.out.printf("%n |------------------------------------------------|%n");
-                    }
+                    System.out.printf("%n |------------------------------------------------|", subTotal);
+                    System.out.printf("%n | Price of products\t\t\t$%8.2f |", discount * 100);
+                    System.out.printf("%n | Discount %2.0f%%\t\t\t\t$%8.2f |", subTotal * discount);
+                    System.out.printf("%n | Net purchase amount\t\t\t$%8.2f |", subTotal - subTotal * discount);
+                    System.out.printf("%n | Shipping cost\t\t\t$%8.2f |", shippingCost);
+                    System.out.printf("%n | Total\t\t\t\t$%8.2f , grandTotal |");
+                    System.out.printf("%n |------------------------------------------------|%n");
+                }
+                // cartTotalItems and subTotal will be recalculated in next iteration
                 subTotal = cartTotalItems = 0;
             }
         }
