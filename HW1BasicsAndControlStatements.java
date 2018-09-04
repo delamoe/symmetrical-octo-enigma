@@ -11,7 +11,7 @@
 
 import java.util.Scanner;
 		
-public class KeepSafeParking {
+public class HW1BasicsAndControlStatements {
 
 	public static void main(String[] args){	
 		String day = "Error";						// initialized to an incorrect day value in order to use a while loop for validation
