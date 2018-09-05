@@ -1,3 +1,12 @@
+Testing performed here on HW2 is strictly for assignment parameters.
+
+I used .matches([nNyY]) instead of .toLowerCase(), the result is the same with less code.
+
+I spent more time working on input validation than anything else. I was able to get validation working that is nearly
+foolproof for product ID input, although I couldn't get an empty return to work (I tried .isEmpty() but it broke the loop.)
+The rest of my validation seems to be working well as shown in TEST 6.
+
+
 TEST 1: 1 13 watt bulb should result in a total of $6.50 with no discount and no free shipping.
 
              |-----------------------------------------|
@@ -210,23 +219,204 @@ TEST 4: 4 13 watt, 2 18 watt and 2 23 watt bulbs should result in a total of $17
 TEST 5: 5 13 watt, 6 18 watt and 10 23 watt bulbs should result in a total of $52.40 with a 20% discount and free shipping.
 
         |-----------------------------------------|
-        | ID       Description             Price  |
-        |-----------------------------------------|
-        | 1        13 watt Light Bulb:     $ 1.50 |
-        | 2        18 watt Light Bulb:     $ 3.00 |
-        | 3        23 watt Light Bulb:     $ 4.00 |
-        |-----------------------------------------|
+                | ID       Description             Price  |
+                |-----------------------------------------|
+                | 1        13 watt Light Bulb:     $ 1.50 |
+                | 2        18 watt Light Bulb:     $ 3.00 |
+                | 3        23 watt Light Bulb:     $ 4.00 |
+                |-----------------------------------------|
+
+                Please select a light bulb by entering the product ID 1, 2 or 3.
+                        Enter ID here: 1
+
+                Please enter the number of 13 watt Light Bulbs you would like to purchase.
+                        Enter QTY here: 5
+
+                You have selected 5 13 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                        Confirm order here: y
+
+                You have added 5 13 watt Light Bulbs to your cart.
+                Would you like to continue shopping?
+                        Enter Y or N Here: y
+
+
+                Your shopping cart contains 5 items.
+                | Qty  Description             Price       Total |
+                |------------------------------------------------|
+                | 5    13 watt Light Bulb      $1.50   $    7.50 |
+                |------------------------------------------------|
+
+                |-----------------------------------------|
+                | ID       Description             Price  |
+                |-----------------------------------------|
+                | 1        13 watt Light Bulb:     $ 1.50 |
+                | 2        18 watt Light Bulb:     $ 3.00 |
+                | 3        23 watt Light Bulb:     $ 4.00 |
+                |-----------------------------------------|
+
+                Please select a light bulb by entering the product ID 1, 2 or 3.
+                        Enter ID here: 2
+
+                Please enter the number of 18 watt Light Bulbs you would like to purchase.
+                        Enter QTY here: 6
+
+                You have selected 6 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                        Confirm order here: y
+
+                You have added 6 18 watt Light Bulbs to your cart.
+                Would you like to continue shopping?
+                        Enter Y or N Here: y
+
+
+                Your shopping cart contains 11 items.
+                | Qty  Description             Price       Total |
+                |------------------------------------------------|
+                | 5    13 watt Light Bulb      $1.50   $    7.50 |
+                | 6    18 watt Light Bulb      $3.00   $   18.00 |
+                |------------------------------------------------|
+
+                |-----------------------------------------|
+                | ID       Description             Price  |
+                |-----------------------------------------|
+                | 1        13 watt Light Bulb:     $ 1.50 |
+                | 2        18 watt Light Bulb:     $ 3.00 |
+                | 3        23 watt Light Bulb:     $ 4.00 |
+                |-----------------------------------------|
+
+                Please select a light bulb by entering the product ID 1, 2 or 3.
+                        Enter ID here: 3
+
+                Please enter the number of 23 watt Light Bulbs you would like to purchase.
+                        Enter QTY here: 10
+
+                You have selected 10 23 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                        Confirm order here: y
+
+                You have added 10 23 watt Light Bulbs to your cart.
+                Would you like to continue shopping?
+                        Enter Y or N Here: n
+
+
+                Your shipment contains 21 items.
+                | Qty  Description             Price       Total |
+                |------------------------------------------------|
+                | 5    13 watt Light Bulb      $1.50   $    7.50 |
+                | 6    18 watt Light Bulb      $3.00   $   18.00 |
+                | 10   23 watt Light Bulb      $4.00   $   40.00 |
+                |------------------------------------------------|
+                |------------------------------------------------|
+                | Price of products                    $   65.50 |
+                | Discount 20%                         $   13.10 |
+                | Net purchase amount                  $   52.40 |
+                | Shipping cost                        $    0.00 |
+                | Total                                $   52.40 |
+                |------------------------------------------------|
+
+TEST 6: Input Validation examples:
 
         Please select a light bulb by entering the product ID 1, 2 or 3.
-                Enter ID here: 1
+                Enter ID here: qer
 
-        Please enter the number of 13 watt Light Bulbs you would like to purchase.
-                Enter QTY here: 5
+        "qer" is not valid!
 
-        You have selected 5 13 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: oihewjfio 5 ohiewfov
+
+        "oihewjfio 5 ohiewfov " is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: 5 wefvwoeihf
+
+        5 is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: 0
+
+        0 is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: 8
+
+        8 is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: `
+
+        "`" is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: -
+
+        "-" is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: oiqwudh=q^[[21~-^[[19~er^[[18~^[[19~67to3g
+
+        "oiqwudh=q-er67to3g" is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: =
+
+        "=" is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here:
+        5
+
+        5 is not valid!
+
+        Please select a light bulb by entering the product ID 1, 2 or 3.
+                Enter ID here: 2
+
+        Please enter the number of 18 watt Light Bulbs you would like to purchase.
+                Enter QTY here: hbsqd
+        "hbsqd" is not a valid quantity.
+
+        Please enter the number of 18 watt Light Bulbs you would like to purchase.
+                Enter QTY here: =
+        "=" is not a valid quantity.
+
+        Please enter the number of 18 watt Light Bulbs you would like to purchase.
+                Enter QTY here:
+        5
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                Confirm order here: hcpiuqwheq
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                Confirm order here: 5
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                Confirm order here:
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                Confirm order here: 6
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+                Confirm order here: u
+
+        You have selected 5 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
                 Confirm order here: y
 
-        You have added 5 13 watt Light Bulbs to your cart.
+        You have added 5 18 watt Light Bulbs to your cart.
+        Would you like to continue shopping?
+                Enter Y or N Here: sfdbsdf
+
+        Would you like to continue shopping?
+                Enter Y or N Here:
+
+        Would you like to continue shopping?
+                Enter Y or N Here:
+
+        Would you like to continue shopping?
+                Enter Y or N Here:
+
+        Would you like to continue shopping?
+                Enter Y or N Here: s
+
+        Would you like to continue shopping?
+                Enter Y or N Here: z
+
         Would you like to continue shopping?
                 Enter Y or N Here: y
 
@@ -234,7 +424,7 @@ TEST 5: 5 13 watt, 6 18 watt and 10 23 watt bulbs should result in a total of $5
         Your shopping cart contains 5 items.
         | Qty  Description             Price       Total |
         |------------------------------------------------|
-        | 5    13 watt Light Bulb      $1.50   $    7.50 |
+        | 5    18 watt Light Bulb      $3.00   $   15.00 |
         |------------------------------------------------|
 
         |-----------------------------------------|
@@ -246,59 +436,34 @@ TEST 5: 5 13 watt, 6 18 watt and 10 23 watt bulbs should result in a total of $5
         |-----------------------------------------|
 
         Please select a light bulb by entering the product ID 1, 2 or 3.
-                Enter ID here: 2
+                Enter ID here: n
 
-        Please enter the number of 18 watt Light Bulbs you would like to purchase.
-                Enter QTY here: 6
-
-        You have selected 6 18 watt Light Bulbs. Please confirm by entering Y or cancel with N.
-                Confirm order here: y
-
-        You have added 6 18 watt Light Bulbs to your cart.
-        Would you like to continue shopping?
-                Enter Y or N Here: y
-
-
-        Your shopping cart contains 11 items.
-        | Qty  Description             Price       Total |
-        |------------------------------------------------|
-        | 5    13 watt Light Bulb      $1.50   $    7.50 |
-        | 6    18 watt Light Bulb      $3.00   $   18.00 |
-        |------------------------------------------------|
-
-        |-----------------------------------------|
-        | ID       Description             Price  |
-        |-----------------------------------------|
-        | 1        13 watt Light Bulb:     $ 1.50 |
-        | 2        18 watt Light Bulb:     $ 3.00 |
-        | 3        23 watt Light Bulb:     $ 4.00 |
-        |-----------------------------------------|
+        "n" is not valid!
 
         Please select a light bulb by entering the product ID 1, 2 or 3.
                 Enter ID here: 3
 
         Please enter the number of 23 watt Light Bulbs you would like to purchase.
-                Enter QTY here: 10
+                Enter QTY here: 650
 
-        You have selected 10 23 watt Light Bulbs. Please confirm by entering Y or cancel with N.
+        You have selected 650 23 watt Light Bulbs. Please confirm by entering Y or cancel with N.
                 Confirm order here: y
 
-        You have added 10 23 watt Light Bulbs to your cart.
+        You have added 650 23 watt Light Bulbs to your cart.
         Would you like to continue shopping?
                 Enter Y or N Here: n
 
 
-        Your shipment contains 21 items.
+        Your shipment contains 655 items.
         | Qty  Description             Price       Total |
         |------------------------------------------------|
-        | 5    13 watt Light Bulb      $1.50   $    7.50 |
-        | 6    18 watt Light Bulb      $3.00   $   18.00 |
-        | 10   23 watt Light Bulb      $4.00   $   40.00 |
+        | 5    18 watt Light Bulb      $3.00   $   15.00 |
+        | 650  23 watt Light Bulb      $4.00   $ 2600.00 |
         |------------------------------------------------|
         |------------------------------------------------|
-        | Price of products                    $   65.50 |
-        | Discount 20%                         $   13.10 |
-        | Net purchase amount                  $   52.40 |
+        | Price of products                    $ 2615.00 |
+        | Discount 20%                         $  523.00 |
+        | Net purchase amount                  $ 2092.00 |
         | Shipping cost                        $    0.00 |
-        | Total                                $   52.40 |
+        | Total                                $ 2092.00 |
         |------------------------------------------------|

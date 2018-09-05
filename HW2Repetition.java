@@ -113,13 +113,18 @@ public class HW2Repetition {
                             "%nYou have selected %d %s%s. Please confirm by entering Y or cancel with N.%n\tConfirm order here: ",
                             tempQty, productID[1][tempID], plural);
                     confirmItem = input.nextLine();
-                    if (confirmItem.matches("[yY]")) { // validate for yY
-                        cart[0][cartIndex] = tempID; // add item to cart
-                        cart[1][cartIndex] = tempQty; // add qty to cart
-                        cartIndex++; // iterate cart index so that it's not overwritten
+                    // validate for yYnN
+                    if (confirmItem.matches("[yY]")) {
+                        // add item to cart
+                        cart[0][cartIndex] = tempID;
+                        // add qty to cart
+                        cart[1][cartIndex] = tempQty;
+                        // iterate cart index so that items are not overwritten
+                        cartIndex++;
                         System.out.printf("%nYou have added %d %s%s to your cart.", tempQty, productID[1][tempID],
                                 plural);
-                    } else if (confirmItem.matches("[nN]")) { // verify operation completed / canceled
+                    // verify operation completed / canceled
+                    } else if (confirmItem.matches("[nN]")) {
                         System.out.printf("%nYou have NOT added %d %s%s to your cart.", tempQty, productID[1][tempID],
                                 plural);
                     }
@@ -129,37 +134,44 @@ public class HW2Repetition {
                 tempQty = 0; // reset for the next order
 
                 // Request customer to continue shopping
-                // validation here
-                while (!continueShopping.matches("[ynYN]")) { // will only accept y or Y or n or N for input, y or Y
-                                                              // closes this loop and returns to the outer loop
+                // will only accept y or Y or n or N for input, y or Y closes this loop and returns to the outer loop
+                while (!continueShopping.matches("[ynYN]")) {
                     System.out.printf("%nWould you like to continue shopping?%n\tEnter Y or N Here: ");
                     continueShopping = input.nextLine();
+                    
                     if (continueShopping.matches("[nN]")) {
-                        finishedShopping = true; // n or N closes the outer loop and send the customer to checkout
+                        // n or N closes this and the outer loop and sends the customer to checkout
+                        finishedShopping = true;
                     }
                 }
                 // count items in the cart and total all items
-                for (int i = 0; i <= (cartIndex - 1); i++) { // iterate through cart items, cart index = line items
-                    cartTotalItems += cart[1][i]; // add all qtys together for total products ordered
-                    subTotal += (cart[1][i] * productPrice[cart[0][i]]); // calculate extended prices and add them
-                                                                         // together
+                // iterate through cart items, cart index = line items
+                for (int i = 0; i <= (cartIndex - 1); i++) {
+                    
+                    // add all qtys together for total products ordered
+                    cartTotalItems += cart[1][i];
+                    
+                    // calculate and add together extended prices
+                    subTotal += (cart[1][i] * productPrice[cart[0][i]]);
                 }
 
                 // Calc discounts: 10% for buying 5 to 7 bulbs, 15% for buying 8 or 9, and 20%
                 // for 10 or more.
                 // nested ternary operators calculate the discount
                 discount = cartTotalItems > 9 ? 0.20 : cartTotalItems > 7 ? 0.15 : cartTotalItems > 4 ? 0.10 : 0.00;
+                
                 // Shipping and handling is $5.00 for orders costing less than $15.00.
-                // Eligibility for free shipping is determined after discounts have been
-                // applied.
+                // Eligibility for free shipping is determined after discounts have been applied.
                 shippingCost = subTotal == 0 ? 0 : (subTotal - (subTotal * discount)) < 15 ? 5 : 0;
-                // System.out.print(" DEBUGGER shippingCost = " + shippingCost);
-                //
+                
                 grandTotal = (subTotal - (subTotal * discount) + shippingCost);
 
                 String cartOrShipment = !finishedShopping ? "shopping cart" : "shipment";
 
+                // Print cart update or invoice header, depending on finishedShopping state
                 System.out.printf("%n%n   Your %s contains %d item%s.", cartOrShipment, cartTotalItems, plural);
+                
+                // If items in cart, print line items and extended prices
                 if (subTotal > 0) {
                     System.out.printf("%n | Qty\tDescription\t\tPrice\t    Total |");
                     System.out.printf("%n |------------------------------------------------|");
@@ -170,6 +182,7 @@ public class HW2Repetition {
                     System.out.printf("%n |------------------------------------------------|");
                 }
 
+                // if shopping done, print invoice
                 if (finishedShopping && subTotal > 0) {
                     System.out.printf("%n |------------------------------------------------|");
                     System.out.printf("%n | Price of products\t\t\t$%8.2f |", subTotal);
