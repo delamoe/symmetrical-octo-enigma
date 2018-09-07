@@ -19,17 +19,14 @@ public class EX1 {
     // Every class needs a main method in order to function
     public static void main(String[] args) {
         // the parameters need assigned values
-        double side1 = Math.rint(1 + Math.random() * 10),
-                side2 = Math.rint(1 + Math.random() * 10);
+        double side1 = Math.rint(1 + Math.random() * 10), side2 = Math.rint(1 + Math.random() * 10);
 
         double areaOfRectangle = calcArea(side1, side2);
         // Without some output, the working method can't be seen to be working
-        System.out.printf(
-            "%nThe area of the rectangle with sides %2.0f & %-2.0f is %3.0f units\u00B2%n%n"
-            , side1, side2, areaOfRectangle);
-
-        // just for fun, use a method to print each rectangle
-        System.out.printf("%s", drawRectangle((int)side1, (int)side2));
+        System.out.printf("%nThe area of the rectangle with sides %2.0f & %-2.0f is %3.0f units\u00B2.%n%s"
+                , side1, side2, areaOfRectangle,
+                // just for fun, use a method to print each rectangle
+                drawRectangle((int) side1, (int) side2));
     }
 
     // return value type void cannot return a double
@@ -45,6 +42,7 @@ public class EX1 {
     }
 
     static String drawRectangle(int height, int width)
+    
     {
         // initialize a counter to keep track of rows
         int count = 0;
@@ -52,10 +50,12 @@ public class EX1 {
         String rectangle = "";
         while (count < height) {
             for (int i = 0; i < width; i++) {
-                if (i == 0 || count == height) {
+                if (i == 0) {
                     rectangle += "\n* ";
-                } else if (count == 0 || count == height - 1 || i == width - 1) {
+                } else if (count == 0 || count == height - 1) {
                     rectangle += "* ";
+                } else if (i == width - 1) {
+                    rectangle += "*";
                 } else {
                     rectangle += "  ";
                 }
