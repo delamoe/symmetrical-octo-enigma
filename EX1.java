@@ -1,18 +1,18 @@
 /* EX 1 - Methods Exercise
-Instructions
-	
+    Instructions
+    
 
-Fix the calcArea method shown below so that it will work with this invocation:
+    Fix the calcArea method shown below so that it will work with this invocation:
 
-double areaOfRectangle = calcArea( side1, side2);
+    double areaOfRectangle = calcArea( side1, side2);
 
-void calcArea( double length, double width )
+    void calcArea( double length, double width )
 
-{
+    {
 
-      double area = length * width ;
+          double area = length * width ;
 
-} */
+    }*/
 
 // The method needs to be called by a valid class
 public class EX1 {
