@@ -26,16 +26,18 @@ public class JavaTest {
          * System.out.printf("\nThe area is %f square units\n", area);
          */
 
-        int someInputValue = -1;
 
-        // do 
-         while (someInputValue < 1) {
 
-            System.out.print("Please input an integer greater than 0 : ");
+         double s =  2.0000;//1.9543;//
+         double s10000 = s * 10000;
+         double e =  4.0000;//3.2547;//
+         double e10000 = e * 10000;
+         double inc = .2000;// .1568;//
+         double inc10000 = inc * 10000;
+         int incrementInteger = (int) ( (e-s)/inc );
+         int incrementAddOne =  (e10000-s10000)%inc10000 > 0 ? 1 : 0 ;
 
-            someInputValue = scan.nextInt();
-
-        }
+         System.out.printf("(e-s)/inc = %f%n(e-s)%%inc = %f%nactual incs = %d%n", (e-s)/inc, (e-s)%inc, incrementInteger + incrementAddOne);
 
     }
 }
