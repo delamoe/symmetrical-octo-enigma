@@ -1,14 +1,13 @@
 import java.util.*;
 
 public class HW3MethodsAndMethodOverloading {
-    
+
     public static void main(String[] args) {
-        
+
         Scanner input = new Scanner(System.in);
-        
+
         try {
-            
-            
+
             // for testing only, comment or delete in final
             double startingAnnualInterestRate = /* 2.0000 */1.257;
             double endingAnnualInterestRate = /* 4.0000 */3.256;
@@ -18,9 +17,10 @@ public class HW3MethodsAndMethodOverloading {
             double interestRateIncrement10000 = interestRateIncrement * 10000;
             int firstTermYears = 15;
             int lastTermYears = 30;
-            int termIncrementYears = 2;
-            double loanAmount = 999999;
+            int termIncrementYears = 5;
+            double loanAmount = 756254.54;
             boolean userComplete = true;
+            
             
             /* // uncomment to run
             double startingAnnualInterestRate = -1.0;
@@ -34,6 +34,7 @@ public class HW3MethodsAndMethodOverloading {
             int termIncrementYears = 0;
             double loanAmount = -1.0;
             boolean userComplete = false; */
+            int yearIterationLimit = 6;
             
             while (!userComplete) {
                 while (startingAnnualInterestRate < 0.0001 || startingAnnualInterestRate > 99.999) {
@@ -145,54 +146,50 @@ public class HW3MethodsAndMethodOverloading {
             }
 
             int yearIterations = ((lastTermYears - firstTermYears) / termIncrementYears) + 1;
-            int incrementAddOne = ((endingAnnualInterestRate10000 - startingAnnualInterestRate10000 )
-                                                                % interestRateIncrement10000 != 0.0 ? 1 : 0 );
-            int interestIterations =
-                (int) ( ( ( endingAnnualInterestRate - startingAnnualInterestRate ) / interestRateIncrement ) + incrementAddOne );
-            
+
+            int incrementAddOne = ((endingAnnualInterestRate10000 - startingAnnualInterestRate10000)
+                    % interestRateIncrement10000 != 0.0 ? 1 : 0);
+            int interestIterations = (int) (((endingAnnualInterestRate - startingAnnualInterestRate)
+                    / interestRateIncrement) + incrementAddOne);
+
             String rowString = String.format(
-                "%nPayments calculated on a $%,6.2f loan from %6.4f%% to %6.4f%% interest and from %d to %d years."
-                , loanAmount, startingAnnualInterestRate, endingAnnualInterestRate, firstTermYears, lastTermYears);
-            if (yearIterations < 6) {
-                rowString += String.format("%nThe total cost of the loan at maturity is shown in [brackets] (to the nearest dollar.)%n%n Interest%n   Rate\t"
-                , loanAmount, startingAnnualInterestRate, endingAnnualInterestRate, firstTermYears, lastTermYears);
-            } else {
-                rowString += String.format("%n%n Interest%n   Rate\t");
+                    "%nPayments calculated on a $%,6.2f loan from %6.4f%% to %6.4f%% interest and from %d to %d years.",
+                    loanAmount, startingAnnualInterestRate, endingAnnualInterestRate, firstTermYears, lastTermYears);
+            if (yearIterations < yearIterationLimit) {
+                rowString += String.format(
+                        "%nThe total cost of the loan at maturity is shown in [brackets] (to the nearest dollar.)");
             }
+
+            rowString += String.format("%n%n Interest%n   Rate\t");
+            
             // String padding = "";
             int currentTerm1 = 0;
-            for (int i = 0; i <= yearIterations && currentTerm1 < lastTermYears; i++ ) {
-                currentTerm1 =
-                    firstTermYears + termIncrementYears * i >= lastTermYears
-                    ? lastTermYears
-                    : firstTermYears + termIncrementYears * i;
-                rowString += String.format("\t %d  Years", currentTerm1);
-                if (yearIterations < 6) {
-                    rowString += String.format(" [$  Total]"); 
+            for (int i = 0; i <= yearIterations && currentTerm1 < lastTermYears; i++) {
+                currentTerm1 = firstTermYears + termIncrementYears * i >= lastTermYears ? lastTermYears
+                        : firstTermYears + termIncrementYears * i;
+                rowString += String.format("\t  %d  Years", currentTerm1);
+                if (yearIterations < yearIterationLimit) {
+                    rowString += String.format("    [$  Total]");
                 }
             }
-            
+
             for (int i = 0; i <= interestIterations; i++) {
-                double interestRate =
-                    startingAnnualInterestRate + interestRateIncrement * i > endingAnnualInterestRate
-                    ? endingAnnualInterestRate
-                    : startingAnnualInterestRate + interestRateIncrement * i;
+                double interestRate = startingAnnualInterestRate + interestRateIncrement * i > endingAnnualInterestRate
+                        ? endingAnnualInterestRate
+                        : startingAnnualInterestRate + interestRateIncrement * i;
                 rowString += String.format("%n%7.4f%%", interestRate);
                 double mir = interestRate / 12 / 100;
                 int currentTerm2 = 0;
-                for (int j = 0; j <= yearIterations && currentTerm2 < lastTermYears; j++ ) {
-                    currentTerm2 =
-                        firstTermYears + termIncrementYears * j >= lastTermYears
-                        ? lastTermYears
-                        : firstTermYears + termIncrementYears * j;
+                for (int j = 0; j <= yearIterations && currentTerm2 < lastTermYears; j++) {
+                    currentTerm2 = firstTermYears + termIncrementYears * j >= lastTermYears ? lastTermYears
+                            : firstTermYears + termIncrementYears * j;
                     int mtp = currentTerm2 * 12;
                     // padding = calcPayment(mir, mtp, loanAmount) > 10000 ? "" : " ";
-                    rowString += String.format("\t $%,8.2f"
-                        , calcPayment(mir, mtp, loanAmount)/* , padding */);
-                    if (yearIterations < 6) {
-                        rowString += String.format(" [$%,7.0f]", calcPayment(mir, mtp, loanAmount) * mtp); 
+                    rowString += String.format("\t $%,10.2f", calcPayment(mir, mtp, loanAmount)/* , padding */);
+                    if (yearIterations < yearIterationLimit) {
+                        rowString += String.format(" [$%,10.0f]", calcPayment(mir, mtp, loanAmount) * mtp);
                     }
-                    
+
                 }
                 // System.out.printf("%n%n=====> DEBUGGER j = %d DEBUGGER <=====%n%n", j);
             }
