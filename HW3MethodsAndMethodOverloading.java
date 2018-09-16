@@ -9,20 +9,20 @@ public class HW3MethodsAndMethodOverloading {
         try {
 
             // for testing only, comment or delete in final
-            double startingAnnualInterestRate = /* 2.0000 */1.257;
-            double endingAnnualInterestRate = /* 4.0000 */3.256;
-            double interestRateIncrement = /* 0.2000 */0.154;
+            /* double startingAnnualInterestRate = 2.25;
+            double endingAnnualInterestRate = 4.3587;
+            double interestRateIncrement = 2.1547;
+            int firstTermYears = 15;
+            int lastTermYears = 25;
+            int termIncrementYears = 5;
+            double loanAmount = 250987;
             double endingAnnualInterestRate10000 = endingAnnualInterestRate * 10000;
             double startingAnnualInterestRate10000 = startingAnnualInterestRate * 10000;
             double interestRateIncrement10000 = interestRateIncrement * 10000;
-            int firstTermYears = 15;
-            int lastTermYears = 30;
-            int termIncrementYears = 5;
-            double loanAmount = 756254.54;
-            boolean userComplete = true;
+            boolean userComplete = true; */
             
             
-            /* // uncomment to run
+            // uncomment to run
             double startingAnnualInterestRate = -1.0;
             double endingAnnualInterestRate = -1.0;
             double interestRateIncrement = -50.0;
@@ -33,7 +33,7 @@ public class HW3MethodsAndMethodOverloading {
             int lastTermYears = -1;
             int termIncrementYears = 0;
             double loanAmount = -1.0;
-            boolean userComplete = false; */
+            boolean userComplete = false;
             int yearIterationLimit = 6;
             
             while (!userComplete) {
@@ -151,6 +151,7 @@ public class HW3MethodsAndMethodOverloading {
                     % interestRateIncrement10000 != 0.0 ? 1 : 0);
             int interestIterations = (int) (((endingAnnualInterestRate - startingAnnualInterestRate)
                     / interestRateIncrement) + incrementAddOne);
+            interestIterations = interestIterations < 1 ? 1 : interestIterations;
 
             String rowString = String.format(
                     "%nPayments calculated on a $%,6.2f loan from %6.4f%% to %6.4f%% interest and from %d to %d years.",
@@ -174,7 +175,7 @@ public class HW3MethodsAndMethodOverloading {
             }
 
             for (int i = 0; i <= interestIterations; i++) {
-                double interestRate = startingAnnualInterestRate + interestRateIncrement * i > endingAnnualInterestRate
+                double interestRate = startingAnnualInterestRate10000 + interestRateIncrement10000 * i > endingAnnualInterestRate10000
                         ? endingAnnualInterestRate
                         : startingAnnualInterestRate + interestRateIncrement * i;
                 rowString += String.format("%n%7.4f%%", interestRate);
