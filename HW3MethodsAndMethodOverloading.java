@@ -1,4 +1,15 @@
-import java.util.*;
+/*
+ * Class	:	HW3MethodsAndMethodOverloading.java
+ *
+ * Purpose 	:	HW3 Methods and Method Overloading
+ * 				10979 CIS131 Prog & Problem Solv II 
+ *
+ * Developer:	E de la Montaña
+ *
+ * Date		:	9/16/2018
+ */
+
+ import java.util.*;
 
 public class HW3MethodsAndMethodOverloading {
 
