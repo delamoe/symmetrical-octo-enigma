@@ -1,81 +1,121 @@
-
 /*
-HW 4A One Dimensional Array (100 pts.):
-
-Remember that Java passes arrays by reference, so you don’t need to return an array.
-Whatever changes a method makes to an array passed in as a parameter happen to the original array in the method that invokes it.
-Please avoid the integer division problem that causes quotients to lose their decimal places.
-
-The main method will:
-    1. Declare the variables for the index and value of the largest array element, the index and value of the smallest array element, the sum of the elements and the average of the elements
-    2. Declare the array and pass it to the method that assigns random values to it
-    3. Pass the array into the method that displays its elements, so we can view their original order
-    4. Pass it into the method that determines the index of the largest element
-    5. Pass it into the method that determines the index of the smallest element
-    6. Pass it into the method that calculates the sum of the elements
-    7. Pass it into the method that calculates the average of the elements
-    8. Invoke the method that displays the index and value of the largest array element, the index and value of the smallest array element, the sum of the elements and the average of the elements
-    9. Pass the array into the sort method
-    10. Pass the array into the method that displays its elements again, so we can view their sorted order
-
-Your program already has a method for calculating the sum of the array elements.
-
-Question:
-will you re-calculate the sum in the method that obtains the average? No, in the spirit of writing re-usable code, you’ll use invoke your previously written sum method.
-The method in items #3 and #10 that displays the unsorted and sorted array elements will produce the following output:
-
-Before the sorting:
-********************************************************************************
-Array Elements
-********************************************************************************
-102 97 53 78 45 150 26 10 3 100
-(These values are for illustration only. Your array will have different randomly assigned values.)
-After the sorting:
-********************************************************************************
-Array Elements
-********************************************************************************
-3 10 26 45 53 78 97 100 102 150
-The method in item #8 that displays results will produce the following output:
-********************************************************************************
-Results of Array Processing
-********************************************************************************
-The index of the highest value is 5. It’s value is 150.
-The index of the lowest value is 8. It’s value is 3.
-The sum of the array elements is 664.
-The average of the array elements is 66.4.
-Provide only your Java source code, no pseudo code. You do not need to compress it since it is only one file.
-*/
-
-import java.util.*;
-
+ * Class	:	HW4OneDArrays.java
+ *
+ * Purpose 	:	HW4 One Dimensional Arrays
+ * 				10979 CIS131 Prog & Problem Solv II 
+ *
+ * Developer:	E de la Montaña
+ *
+ * Date		:	9/22/2018
+ */
 public class HW4OneDArrays {
     public static void main(String[] args) {
-
+        String hBars = "🙃 🤑 😲 ☹ ️🙁 😖 😞 😟 😤 😢 😭 😠 😷 🤒 🤕 😇 🤓 💀 🤖 🤗 😬 😰 😱 😳 😵 🤐 😡 😴 ";
         // 1. Declares an array of 10 ints
-        int[] arrayTen = new int[10];
+        int[] array = new int[10];
+        assignRandomValues(array);
+        System.out.printf("%nBefore the sorting:%n%s%nArray Elements%n%s%n%s", hBars, hBars,
+                arrayElementalDisplay(array));
+        insertionSort(array);
+        System.out.printf("%n%nAfter the sorting:%n%s%nArray Elements%n%s%n%s%n%s%n", hBars, hBars,
+                arrayElementalDisplay(array), hBars);
         // 2. Declares an int to hold the index of the largest array element
-        int arrayTen_9 = arrayTen[9]; // ?????
+        int minElementValue = 1, maxElementValue = 100;
+        int arrayMaxIndex = indexOfArrayAndMaxValue(array, minElementValue)[1];
+        int arrayMaxElement = indexOfArrayAndMaxValue(array, minElementValue)[0];
         // 3. Declares an int to hold the index of the smallest array element
-        int arrayTen_0 = arrayTen[0]; // ?????
+        int arrayMinIndex = indexOfArrayAndMinValue(array, maxElementValue)[1];
+        int arrayMinElement = indexOfArrayAndMinValue(array, maxElementValue)[0];
         // 4. Declares an int to hold the sum of the array elements
-        int arrayTenSum = sumArray(arrayTen);
+        int arraySum = arraySum(array);
         // 5. Declares a double to hold the value of the average of the array elements
-        double arrayTenAvg = avgArray(arrayTen);
-        // 6. Defines a method that assigns a random value to each array element
-
+        double arrayAvg = arrayAverage(array);
+        displayResults(array, arrayMaxIndex, arrayMaxElement, arrayMinIndex, arrayMinElement, arraySum, arrayAvg,
+                hBars);
     }
+
+    // 6. Defines a method that assigns a random value to each array element
+    public static void assignRandomValues(int[] arr) { // CHANGE TO void
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (1 + Math.random() * 100);
+        }
+    }
+
     // 7. Defines a method that displays all the elements in the array
-    public static void arrayDisplay(int[] arr) {
-
+    public static String arrayElementalDisplay(int[] arr) {
+        String arrayList = "";
+        for (int i = 0; i < arr.length; i++) {
+            String punctuate = i == arr.length - 1 ? "" : " ";
+            arrayList += String.format("%02d%s", arr[i], punctuate);
+        }
+        return arrayList;
     }
+
     // 8. Defines a method that sorts the array using the insertion technique (the
     // text provides sample code for this)
+    public static void insertionSort(int[] list) {
+        for (int i = 1; i < list.length; i++) {
+            int currentElement = list[i];
+            int k;
+            for (k = i - 1; k >= 0 && list[k] > currentElement; k--) {
+                list[k + 1] = list[k];
+            }
+            list[k + 1] = currentElement;
+        }
+    }
+
     // 9. Defines a method that identifies and returns the index of the highest
     // value in the array
+    public static int[] indexOfArrayAndMaxValue(int[] arr, int minElementValue) {
+        int[] max_index = { minElementValue, minElementValue };
+        for (int i = 0; i < arr.length; i++) {
+            if (max_index[0] < arr[i]) {
+                max_index[0] = arr[i];
+                max_index[1] = i;
+            }
+        }
+        return max_index;
+    }
+
     // 10. Defines a method that identifies and returns the index of the lowest
     // value in the array
+    public static int[] indexOfArrayAndMinValue(int[] arr, int maxElementValue) {
+        int[] min_index = { maxElementValue, maxElementValue };
+        for (int i = 0; i < arr.length; i++) {
+            if (min_index[0] > arr[i]) {
+                min_index[0] = arr[i];
+                min_index[1] = i;
+            }
+        }
+        return min_index;
+    }
+
     // 11. Defines a method that calculates the sum of the array elements
+    public static int arraySum(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+
     // 12. Defines a method that calculates the average of the array elements
+    public static double arrayAverage(int[] arr) {
+        double average = arraySum(arr) / (double) arr.length;
+        return average;
+    }
+
     // 13. Defines a method that displays the results calculated by the methods
     // described in items 5 through 8.
+    public static void displayResults(int[] arr, int arrayMaxIndex, int arrayMaxElement, int arrayMinIndex,
+            int arrayMinElement, int arraySum, double arrayAvg, String hBars) {
+        String displayString = "";
+        displayString += String.format("%nResults of Array Processing%n%s", hBars);
+        displayString += String.format("%nThe index of the highest value is %d. It’s value is %d.", arrayMaxIndex, arrayMaxElement);
+        displayString += String.format("%nThe index of the lowest value is %d. It’s value is %d.", arrayMinIndex, arrayMinElement);
+        displayString += String.format("%nThe sum of the array elements is %d", arraySum(arr));
+        displayString += String.format("%nThe average of the array elements is %5.1f", arrayAverage(arr));
+        displayString += String.format("%n%s%n", hBars);
+        System.out.printf("%s", displayString);
+    }
 }
