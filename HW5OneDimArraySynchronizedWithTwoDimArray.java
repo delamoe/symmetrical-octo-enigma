@@ -47,7 +47,7 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
     }
 
     public static void printResult(double[][] wagesArray) {
-        System.out.printf("%n🖇\t\t Hours\t\t\t Regular\t Overtime\t Total     🖇"
+        System.out.printf("%n🖇\t\t Hours\t\t\t  Regular\t  Overtime\t  Total    🖇"
                 + "%n🖇 Employee ID\tWorked\tPay Rate\t Gross Pay\t Gross Pay\t Gross Pay 🖇"
                 + "%n🖇----------------------------------------------------------------------------------🖇");
         for (int i = 0; i < wagesArray.length; i++) {
@@ -57,18 +57,21 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
         System.out.printf("%n🖇----------------------------------------------------------------------------------🖇%n");
     }
 }
+
 /*
+
 delamoe@Delamo-Lenovo:~/symmetrical-octo-enigma$ javac HW5OneDimArraySynchronizedWithTwoDimArray.java
 delamoe@Delamo-Lenovo:~/symmetrical-octo-enigma$ java HW5OneDimArraySynchronizedWithTwoDimArray
 
-🖇                Hours                   Regular         Overtime        Total    🖇
-🖇 Employee ID   Worked  Pay Rate        Gross Pay       Gross Pay       Gross Pay 🖇
-🖇 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰🖇
-🖇 100            50.00  $ 25.00         $ 1,000.00      $   375.00      $ 1,375.00🖇
-🖇 200            15.00  $ 15.00         $   225.00      $     0.00      $   225.00🖇
-🖇 300            48.00  $ 27.00         $ 1,080.00      $   324.00      $ 1,404.00🖇
-🖇 400            40.00  $ 25.00         $ 1,000.00      $     0.00      $ 1,000.00🖇
-🖇 500            40.00  $ 23.00         $   920.00      $     0.00      $   920.00🖇
-🖇 600            45.00  $ 10.00         $   400.00      $    75.00      $   475.00🖇
-🖇 〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰🖇
+🖇                Hours                    Regular         Overtime        Total    🖇
+🖇 Employee ID   Worked  Pay Rate         Gross Pay       Gross Pay       Gross Pay 🖇
+🖇----------------------------------------------------------------------------------🖇
+🖇 100           50.00   $ 25.00         $ 1,000.00      $   375.00      $ 1,375.00 🖇
+🖇 200           15.00   $ 15.00         $   225.00      $     0.00      $   225.00 🖇
+🖇 300           48.00   $ 27.00         $ 1,080.00      $   324.00      $ 1,404.00 🖇
+🖇 400           40.00   $ 25.00         $ 1,000.00      $     0.00      $ 1,000.00 🖇
+🖇 500           40.00   $ 23.00         $   920.00      $     0.00      $   920.00 🖇
+🖇 600           45.00   $ 10.00         $   400.00      $    75.00      $   475.00 🖇
+🖇----------------------------------------------------------------------------------🖇
+
 */
