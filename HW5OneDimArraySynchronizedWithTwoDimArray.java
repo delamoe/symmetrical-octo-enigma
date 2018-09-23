@@ -19,21 +19,35 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
     }
 
     public static void populateEmployeeIds(int[] arr) {
+        // this seems odd, wouldn't it be better to just
+        // instantiate the array with the data in the first place?
         int[] ids = { 100, 200, 300, 400, 500, 600 };
+        /* arr = ids; // result in { 0,0,0,0,0,0 } */
+        /* arr[0] = ids; // HW5OneDimArraySynchronizedWithTwoDimArray.java:25:
+                         // error: incompatible types: int[] cannot be converted
+                         // to int arr[0] = ids; */
+        /*  If I instantiate a 2d array in the main:
+            (int[][] employeeIdArray = new int[1][6];)
+            then arr[0] = ids; works fine.*/
         for (int i = 0; i < arr.length; i++) {
             arr[i] = ids[i];
         }
     }
 
     public static void populatePayrollArray(double[][] arr) {
+        // this seems odd, wouldn't it be better to just
+        // instantiate the array with the data in the first place?
         double[] hoursWorked = { 50.00, 15.00, 48.00, 40.00, 40.00, 45.00 };
         double[] payRate = { 25.00, 15.00, 27.00, 25.00, 23.00, 10.00 };
+        // Why can assign the primitive to values in the 2d array but not in the 1d array
         arr[0] = hoursWorked;
         arr[1] = payRate;
     }
 
     public static double[][] calculateWages(int[] ids, double[][] hoursAndRates) {
         double[][] wagesArray = new double[ids.length][6];
+        // I explored ways to accomplish using a nested loop
+        // but each attempt required more code than this
         for (int i = 0; i < wagesArray.length; i++) {
             wagesArray[i][0] = ids[i];
             wagesArray[i][1] = hoursAndRates[0][i];
@@ -47,7 +61,7 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
     }
 
     public static void printResult(double[][] wagesArray) {
-        System.out.printf("%n🖇\t\t Hours\t\t\t  Regular\t  Overtime\t  Total    🖇"
+        System.out.printf("%n🖇\t\t Hours\t\t\t  Regular\t  Overtime\t   Total   🖇"
                 + "%n🖇 Employee ID\tWorked\tPay Rate\t Gross Pay\t Gross Pay\t Gross Pay 🖇"
                 + "%n🖇----------------------------------------------------------------------------------🖇");
         for (int i = 0; i < wagesArray.length; i++) {
@@ -57,21 +71,3 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
         System.out.printf("%n🖇----------------------------------------------------------------------------------🖇%n");
     }
 }
-
-/*
-
-delamoe@Delamo-Lenovo:~/symmetrical-octo-enigma$ javac HW5OneDimArraySynchronizedWithTwoDimArray.java
-delamoe@Delamo-Lenovo:~/symmetrical-octo-enigma$ java HW5OneDimArraySynchronizedWithTwoDimArray
-
-🖇                Hours                    Regular         Overtime        Total    🖇
-🖇 Employee ID   Worked  Pay Rate         Gross Pay       Gross Pay       Gross Pay 🖇
-🖇----------------------------------------------------------------------------------🖇
-🖇 100           50.00   $ 25.00         $ 1,000.00      $   375.00      $ 1,375.00 🖇
-🖇 200           15.00   $ 15.00         $   225.00      $     0.00      $   225.00 🖇
-🖇 300           48.00   $ 27.00         $ 1,080.00      $   324.00      $ 1,404.00 🖇
-🖇 400           40.00   $ 25.00         $ 1,000.00      $     0.00      $ 1,000.00 🖇
-🖇 500           40.00   $ 23.00         $   920.00      $     0.00      $   920.00 🖇
-🖇 600           45.00   $ 10.00         $   400.00      $    75.00      $   475.00 🖇
-🖇----------------------------------------------------------------------------------🖇
-
-*/
