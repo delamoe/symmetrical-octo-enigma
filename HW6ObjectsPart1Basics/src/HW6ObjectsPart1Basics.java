@@ -14,7 +14,7 @@ public class HW6ObjectsPart1Basics{
 
         ClassSection CIS131 = new ClassSection();
         // uncomment to test initial values
-        // System.out.printf("%s%n", CIS131._toString());
+        // System.out.printf("%s%n", CIS131.toString());
 
         CIS131.setCRN(20008);
         CIS131.setDept("CIS");
@@ -26,7 +26,7 @@ public class HW6ObjectsPart1Basics{
         CIS131.setEnrollment(30);
         CIS131.setInstructorsID(666);
 
-        System.out.printf("%s%n",CIS131._toString());
+        System.out.printf("%s%n",CIS131.toString());
         
     }
 }

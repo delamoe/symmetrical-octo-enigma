@@ -40,7 +40,7 @@ We often call these applications driver programs. For our purposes, the driver p
 Provide your Java source code both the class section and the driver program. Since we have two files, compress them together into a file that contains your name then upload it to D2L.
 */
 
-class ClassSection {
+public class ClassSection {
     int CRN;
     String dept;
     int courseNumber;
@@ -135,7 +135,7 @@ class ClassSection {
         return instructorsID;
     }
 
-    String _toString() {
+    public String toString() {
         String printString = "";
         printString += String.format("%nCRN                 : %d", getCRN());
         printString += String.format("%nDepartment          : %s", getDept());
