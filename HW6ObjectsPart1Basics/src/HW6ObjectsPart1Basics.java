@@ -13,7 +13,8 @@ public class HW6ObjectsPart1Basics{
     public static void main(String[] args) {
 
         ClassSection CIS131 = new ClassSection();
-        System.out.printf("%s%n", CIS131._toString());
+        // uncomment to test initial values
+        // System.out.printf("%s%n", CIS131._toString());
 
         CIS131.setCRN(20008);
         CIS131.setDept("CIS");
