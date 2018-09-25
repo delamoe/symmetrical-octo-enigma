@@ -61,13 +61,13 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
     }
 
     public static void printResult(double[][] wagesArray) {
-        System.out.printf("%n🖇\t\t Hours\t\t\t  Regular\t  Overtime\t   Total   🖇"
-                + "%n🖇 Employee ID\tWorked\tPay Rate\t Gross Pay\t Gross Pay\t Gross Pay 🖇"
-                + "%n🖇----------------------------------------------------------------------------------🖇");
+        System.out.printf("\n☺\t\t Hours\t\t\t  Regular\t  Overtime\t   Total   ☺"
+                + "\n☺ Employee ID\tWorked\tPay Rate\t Gross Pay\t Gross Pay\t Gross Pay ☺"
+                + "\n☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺  ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺");
         for (int i = 0; i < wagesArray.length; i++) {
-            System.out.printf("%n🖇% 4.0f\t\t%4.2f\t$% 4.2f\t\t$%, 9.2f\t$%, 9.2f\t$%, 9.2f 🖇", wagesArray[i][0],
+            System.out.printf("\n☺% 4.0f\t\t%4.2f\t$% 4.2f\t\t$%, 9.2f\t$%, 9.2f\t$%, 9.2f ☺", wagesArray[i][0],
                     wagesArray[i][1], wagesArray[i][2], wagesArray[i][3], wagesArray[i][4], wagesArray[i][5]);
         }
-        System.out.printf("%n🖇----------------------------------------------------------------------------------🖇%n");
+        System.out.printf("\n☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺  ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺\n");
     }
 }
