@@ -12,3 +12,21 @@ Due Date
 	
 Oct 14, 2018 11:59 PM
 */
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class ObjectCompArrayList {
+
+  public static void main(String[] args) {
+    System.out.println("Hello world!");
+    
+    // Declare the ArrayList of Employee objects:
+    List<Employee> EmployeeList = new ArrayList<Employee>();
+
+    
+
+
+  }
+
+}

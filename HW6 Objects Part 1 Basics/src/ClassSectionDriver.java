@@ -1,5 +1,5 @@
 /*
-     * Class	:	Driver.java
+     * Class	:	ClassSectionDriver.java
      *
      * Purpose 	:	HW6 Objects Part 1 Basics
      * 				10979 CIS131 Prog & Problem Solv II 
@@ -9,12 +9,11 @@
      * Date		:	9/25/2018
      */
 
-public class HW6ObjectsPart1Basics{
+public class ClassSectionDriver{
     public static void main(String[] args) {
 
         ClassSection CIS131 = new ClassSection();
-        // uncomment to test initial values
-        // System.out.printf("%s%n", CIS131.toString());
+        // System.out.printf("%s%n", CIS131.toString()); // uncomment to test initial values
 
         CIS131.setCRN(20008);
         CIS131.setDept("CIS");

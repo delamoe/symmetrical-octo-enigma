@@ -91,7 +91,8 @@ public class Book
 	{
 		String objectState = "" ;
 
-		objectState += 	"ISBN    : " + getIsbn()    + "\n" +
+		objectState += 
+						"ISBN    : " + getIsbn()    + "\n" +
 		    		"Title   : " + getTitle()   + "\n" +
 		    		"Subject : " + getSubject() + "\n" +
 		    		"Price   : " + getPrice()   + "\n";
