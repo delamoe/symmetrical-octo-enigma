@@ -15,7 +15,7 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
         double[][] payrollArray = new double[2][6];
         populateEmployeeIds(employeeIdArray);
         populatePayrollArray(payrollArray);
-        printResult(calculateWages(employeeIdArray, payrollArray));
+        printResult(employeeIdArray, payrollArray, calculateWages(employeeIdArray, payrollArray));
     }
 
     public static void populateEmployeeIds(int[] arr) {
@@ -45,28 +45,25 @@ public class HW5OneDimArraySynchronizedWithTwoDimArray {
     }
 
     public static double[][] calculateWages(int[] ids, double[][] hoursAndRates) {
-        double[][] wagesArray = new double[ids.length][6];
+        double[][] wagesArray = new double[ids.length][3];
         // I explored ways to accomplish using a nested loop
         // but each attempt required more code than this
         for (int i = 0; i < wagesArray.length; i++) {
-            wagesArray[i][0] = ids[i];
-            wagesArray[i][1] = hoursAndRates[0][i];
-            wagesArray[i][2] = hoursAndRates[1][i];
-            wagesArray[i][3] = hoursAndRates[0][i] > 40 ? 40 * hoursAndRates[1][i]
+            wagesArray[i][0] = hoursAndRates[0][i] > 40 ? 40 * hoursAndRates[1][i]
                     : hoursAndRates[0][i] * hoursAndRates[1][i];
-            wagesArray[i][4] = hoursAndRates[0][i] > 40 ? (hoursAndRates[0][i] - 40) * hoursAndRates[1][i] * 1.5 : 0;
-            wagesArray[i][5] = wagesArray[i][3] + wagesArray[i][4];
+            wagesArray[i][1] = hoursAndRates[0][i] > 40 ? (hoursAndRates[0][i] - 40) * hoursAndRates[1][i] * 1.5 : 0;
+            wagesArray[i][2] = wagesArray[i][0] + wagesArray[i][1];
         }
         return wagesArray;
     }
 
-    public static void printResult(double[][] wagesArray) {
+    public static void printResult(int[] ids, double[][] hoursAndRates, double[][] wagesArray) {
         System.out.printf("\n☺\t\t Hours\t\t\t  Regular\t  Overtime\t   Total   ☺"
                 + "\n☺ Employee ID\tWorked\tPay Rate\t Gross Pay\t Gross Pay\t Gross Pay ☺"
                 + "\n☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺  ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺");
         for (int i = 0; i < wagesArray.length; i++) {
-            System.out.printf("\n☺% 4.0f\t\t%4.2f\t$% 4.2f\t\t$%, 9.2f\t$%, 9.2f\t$%, 9.2f ☺", wagesArray[i][0],
-                    wagesArray[i][1], wagesArray[i][2], wagesArray[i][3], wagesArray[i][4], wagesArray[i][5]);
+            System.out.printf("\n☺% d\t\t%4.2f\t$% 4.2f\t\t$%, 9.2f\t$%, 9.2f\t$%, 9.2f ☺", ids[i],
+                    hoursAndRates[0][i], hoursAndRates[1][i], wagesArray[i][0], wagesArray[i][1], wagesArray[i][2]);
         }
         System.out.printf("\n☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺  ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺  ☺ ☺\n");
     }
