@@ -19,10 +19,9 @@ import java.util.ArrayList;
 public class ObjectCompArrayList {
 
   public static void main(String[] args) {
-    System.out.println("Hello world!");
     
     // Declare the ArrayList of Employee objects:
-    List<Employee> EmployeeList = new ArrayList<Employee>();
+    List<Employee>EmployeeList = new ArrayList<Employee>();
 
     
 

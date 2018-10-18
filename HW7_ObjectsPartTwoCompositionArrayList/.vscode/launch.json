@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - ClassSectionDriver",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "ClassSectionDriver",
+      "args": "",
+      "projectName": "HW6 Objects Part 1 Basics"
+    }
+  ]
+}
