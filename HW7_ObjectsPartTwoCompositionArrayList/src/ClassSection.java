@@ -22,7 +22,7 @@ public class ClassSection {
     private int capacity;
     private int enrollment;
     private int instructorsID;
-    private List<Student> studentList = new ArrayList<Student>();
+    private List <Student> studentList = new ArrayList <Student> ();
 
     ClassSection() {
         CRN = 0;

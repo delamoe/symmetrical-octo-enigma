@@ -1,0 +1,40 @@
+/*
+     * Class	:	Driver.java
+     *
+     * Purpose 	:	HW8 Objects Part 3 Inheritance and Polymorphism
+     * 				10979 CIS131 Prog & Problem Solv II 
+     *
+     * Developer:	E de la Montaña
+     *
+     * Date		:	10/22/2018
+*/
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Driver {
+  public static void main(String[] args) {
+    
+    List<Publication> publications = new ArrayList<Publication>();
+    
+    Publication[] publicationEntries = new Publication[] { 
+      new Book("The Dark Tower", "Donald M. Grant", "1982", "Science Fiction - Fantasy", "Stephen King", "9780743254564", 2006271051, 845), 
+      new Book("Foundation and Earth", "Doubleday", "1986", "Science Fiction", "Issac Asimov", "0246130474", 87162264, 462), 
+      new Book("Macroscope", " ‎Avon Books", "1969", "Science Fiction", "Piers Anthony", "0839828993", 85021860, 480), 
+      new Book("Imajica", "HarperCollins", "1991", "Fantasy", "Clive Barker", "0060937262", 2001059130, 880), 
+      new Book("The Dosadi Experiment", "G. P. Putnam's Sons", "1977", "Science Fiction", "Frank Herbert", "039912022X", 77003653, 336), 
+      new Periodical("The New Yorker", "Condé Nast", "1925", "reportage, commentary, criticism, essays, fiction, satire, cartoons, and poetry", "47 times per year", "David Remnick"), 
+      new Periodical("Popular Mechanics", "Henry Haven Windsor, since 1958, Hearst Communications", "1902", "popular science and technology", "Monthly", "Ryan D'Agostino"),
+      new Periodical("Scientific American", "Nature Publishing Group", "1845", "Popular science", "Monthly", "Mariette DiChristina")
+    };
+
+    for (Publication publication : publicationEntries) {
+      publications.add(publication);
+    }
+
+    for ( Publication publication : publications ) {
+      System.out.println(publication.toString() + "\n");
+    }
+    
+  }
+}
