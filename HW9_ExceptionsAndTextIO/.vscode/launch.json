@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - PayManager",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "PayManager",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Driver",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "Driver",
+      "args": "",
+      "projectName": "HW9_ExceptionsAndTextIO"
+    }
+  ]
+}
