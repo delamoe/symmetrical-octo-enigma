@@ -58,9 +58,9 @@ public abstract class Publication {
   @Override
   public String toString() {
     return 
-    "\nTitle . . . . . . . . . . . . " + getTitle() +
-    "\nPublisher. . . . . . . . . . ." + getPublisher() +
-    "\nPublication Date. . . . . . . " + getPublicationDate() +
-    "\nSubject. . . . . . . . . . . ." + getSubject();
+    "\nTitle . . . . . . . . . . . . " + this.getTitle() +
+    "\nPublisher. . . . . . . . . . ." + this.getPublisher() +
+    "\nPublication Date. . . . . . . " + this.getPublicationDate() +
+    "\nSubject. . . . . . . . . . . ." + this.getSubject();
   }
 }
