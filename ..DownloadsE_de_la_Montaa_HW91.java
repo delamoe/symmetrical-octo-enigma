@@ -82,7 +82,7 @@ public class PayManager {
   }
 
   static void displayData(List<String> outputData) {
-    String moneyBag = "💰"; 
+    String moneyBag = "💰";
     String headerText = String.format("%s %s\t%10s, %-10s\t%s\t%s\t%s\t%s\t%s  %s", moneyBag, "Emp ID", "Name: Last", "First",
         "Hours Worked", "Hourly Rate", "Regular Pay", "Overtime Pay", "Total Pay", moneyBag);
     String bills = ""; for (int i = 0; i <= headerText.length()/6; i++) bills += "💵💴💶💷";

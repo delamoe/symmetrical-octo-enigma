@@ -7,14 +7,12 @@
  *
  * Developer: E de la Montaña
  *
- * Date     : 10/25/2018
- * 
+ * Date : 10/23/2018
  */
 
 import java.io.File;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -23,7 +21,6 @@ public class PayManager {
     final String FILE_NAME = "payroll.dat";
 
     Scanner inputFile = null;
-    List<String> outputData = new ArrayList<>();
 
     try {
       inputFile = new Scanner(new File(FILE_NAME));
@@ -33,12 +30,11 @@ public class PayManager {
 
       System.exit(-1);
     }
-    readData(inputFile, FILE_NAME, outputData);
-    displayData(outputData);
+    readData(inputFile, FILE_NAME);
 
   }
 
-  static void readData(Scanner inputFile, final String FILE_NAME, List<String> outputData) {
+  static void readData(Scanner inputFile, final String FILE_NAME) {
     int employeeID;
     String lastName;
     String firstName;
@@ -52,7 +48,8 @@ public class PayManager {
         firstName = inputFile.next();
         hours = inputFile.nextDouble();
         payRate = inputFile.nextDouble();
-        outputData.add(calcPay(employeeID, lastName, firstName, hours, payRate));
+
+        displayData(calcPay(employeeID, lastName, firstName, hours, payRate));
 
       } catch (InputMismatchException ex) {
         System.out
@@ -64,34 +61,23 @@ public class PayManager {
     }
 
     inputFile.close();
-    // return outputData;
   }
 
   static String calcPay(int employeeID, String lastName, String firstName, Double hours, Double payRate) {
 
-    final double REGULAR_HOURS = 40;
     final double OT_MULTIPLIER = 1.5;
-    double regularHours = hours >= REGULAR_HOURS ? REGULAR_HOURS : hours;
+    double regularHours = hours >= 40 ? 40 : hours;
     double regularPay = regularHours * payRate;
-    double overtimeHours = hours <= REGULAR_HOURS ? 0 : hours - REGULAR_HOURS;
+    double overtimeHours = hours <= 40 ? 0 : hours - 40;
     double overtimePay = overtimeHours * payRate * OT_MULTIPLIER;
     double totalPay = regularPay + overtimePay;
 
-    return String.format("💰  %d\t\t%10s, %-7s\t   %2.1f\t\t $%7.2f\t $%8.2f\t $%8.2f\t$%8.2f  💰\n", employeeID,
-        lastName, firstName, hours, payRate, regularPay, overtimePay, totalPay);
+    return String.format("%d\t%8s, %-6s\t$%7.2f\t$%7.2f\t$%8.2f\t$%8.2f\t$%8.2f%n", employeeID, lastName, firstName,
+        hours, payRate, regularPay, overtimePay, totalPay);
   }
 
-  static void displayData(List<String> outputData) {
-    String moneyBag = "💰"; 
-    String headerText = String.format("%s %s\t%10s, %-10s\t%s\t%s\t%s\t%s\t%s  %s", moneyBag, "Emp ID", "Name: Last", "First",
-        "Hours Worked", "Hourly Rate", "Regular Pay", "Overtime Pay", "Total Pay", moneyBag);
-    String bills = ""; for (int i = 0; i <= headerText.length()/6; i++) bills += "💵💴💶💷";
-    String moneyLine = String.format("%s%s%s", moneyBag, bills, moneyBag);
-    String dataLines = "";
-    for (String dataLine : outputData) {
-      dataLines += dataLine;
-    }
-    System.out.printf("%s\n%s\n%s\n%s%s\n", moneyLine, headerText, moneyLine, dataLines, moneyLine);
+  static void displayData(String str) {
+    System.out.printf("%s", str);
 
   }
 }

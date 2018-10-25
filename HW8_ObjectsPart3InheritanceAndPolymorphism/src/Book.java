@@ -3,11 +3,11 @@
      * Class	:	Book.java
      *
      * Purpose 	:	HW8 Objects Part 3 Inheritance and Polymorphisms
-     * 				10979 CIS131 Prog & Problem Solv II 
+     * 			10979 CIS131 Prog & Problem Solv II 
      *
      * Developer:	E de la Montaña
      *
-     * Date		:	10/22/2018
+     * Date	:	10/25/2018
      */
 
 class Book extends Publication {
@@ -60,9 +60,9 @@ class Book extends Publication {
 
         public String toString() {
                 return "Book :" + super.toString() +
-                "\nAuthor                      : " + author +
-                "\nISBN                        : " + isbn +
-                "\nLibrary of Congress Number  : " + libraryOfCongressNum +
-                "\nPages                       : " + pages;
+                "\nAuthor. . . . . . . . . . . . " + author +
+                "\nISBN . . . . . . . . . . . . ." + isbn +
+                "\nLibrary of Congress Number. . " + libraryOfCongressNum +
+                "\nPages. . . . . . . . . . . . ." + pages;
         }
 }

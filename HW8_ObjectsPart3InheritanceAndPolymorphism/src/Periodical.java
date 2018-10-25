@@ -6,7 +6,7 @@
      *
      * Developer:	E de la Montaña
      *
-     * Date		:	10/22/2018
+     * Date	  	:	10/25/2018
 */
 
 public class Periodical extends Publication{
@@ -38,7 +38,7 @@ public class Periodical extends Publication{
   @Override
   public String toString() {
     return "Periodical :" + super.toString() +
-      "\nPublication Frequency       : " + getPublicationFrequency() +
-      "\nEditor                      : " + getEditor();
+      "\nPublication Frequency . . . . " + getPublicationFrequency() +
+      "\nEditor . . . . . . . . . . . ." + getEditor();
   }
 }

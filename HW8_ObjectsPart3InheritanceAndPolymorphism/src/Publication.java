@@ -1,29 +1,20 @@
 /*
-* Class	:	Publication.java
+* Class	    :	Publication.java
 *
-* Purpose 	:	HW8 Objects Part 3 Inheritance and Polymorphism
-* 				10979 CIS131 Prog & Problem Solv II 
+* Purpose   :	HW8 Objects Part 3 Inheritance and Polymorphism
+* 				    10979 CIS131 Prog & Problem Solv II 
 *
-* Developer:	E de la Montaña
+* Developer :	E de la Montaña
 *
-* Date		:	10/22/2018
+* Date		  :	10/25/2018
 */
 
-// base (parent or super) class
-public  class Publication {
+public abstract class Publication {
   
   private String title;
   private String publisher;
   private String publicationDate;
   private String subject;
-
-  /* // default
-  public Publication() {
-    setTitle("");
-    setPublisher("");
-    setPublicationDate("");
-    setSubject("");
-  } */
 
   public Publication(String title, String publisher, String publicationDate, String subject) {
     setTitle(title);
@@ -67,9 +58,9 @@ public  class Publication {
   @Override
   public String toString() {
     return 
-    "\nTitle                       : " + getTitle() +
-    "\nPublisher                   : " + getPublisher() +
-    "\nPublication Date            : " + getPublicationDate() +
-    "\nSubject                     : " + getSubject();
+    "\nTitle . . . . . . . . . . . . " + getTitle() +
+    "\nPublisher. . . . . . . . . . ." + getPublisher() +
+    "\nPublication Date. . . . . . . " + getPublicationDate() +
+    "\nSubject. . . . . . . . . . . ." + getSubject();
   }
 }
