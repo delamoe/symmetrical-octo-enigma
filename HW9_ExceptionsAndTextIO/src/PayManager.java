@@ -13,7 +13,6 @@
 
 import java.io.File;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -23,22 +22,21 @@ public class PayManager {
     final String FILE_NAME = "payroll.dat";
 
     Scanner inputFile = null;
-    List<String> outputData = new ArrayList<>();
+    ArrayList<String> outputData = new ArrayList<>();
 
     try {
       inputFile = new Scanner(new File(FILE_NAME));
+      readData(inputFile, FILE_NAME, outputData);
+      displayData(outputData);
 
     } catch (FileNotFoundException ex) {
       System.out.println("\n *** Exception occured while opening " + FILE_NAME + " -- " + ex.getMessage() + " ***");
 
       System.exit(-1);
     }
-    readData(inputFile, FILE_NAME, outputData);
-    displayData(outputData);
-
   }
 
-  static void readData(Scanner inputFile, final String FILE_NAME, List<String> outputData) {
+  private static void readData(Scanner inputFile, final String FILE_NAME, ArrayList<String> outputData) {
     int employeeID;
     String lastName;
     String firstName;
@@ -48,8 +46,8 @@ public class PayManager {
     while (inputFile.hasNext()) {
       try {
         employeeID = inputFile.nextInt();
-        lastName = inputFile.next();
-        firstName = inputFile.next();
+        lastName = ProperName(inputFile.next());
+        firstName = ProperName(inputFile.next());
         hours = inputFile.nextDouble();
         payRate = inputFile.nextDouble();
         outputData.add(calcPay(employeeID, lastName, firstName, hours, payRate));
@@ -64,10 +62,9 @@ public class PayManager {
     }
 
     inputFile.close();
-    // return outputData;
   }
 
-  static String calcPay(int employeeID, String lastName, String firstName, Double hours, Double payRate) {
+  private static String calcPay(int employeeID, String lastName, String firstName, Double hours, Double payRate) {
 
     final double REGULAR_HOURS = 40;
     final double OT_MULTIPLIER = 1.5;
@@ -81,11 +78,13 @@ public class PayManager {
         lastName, firstName, hours, payRate, regularPay, overtimePay, totalPay);
   }
 
-  static void displayData(List<String> outputData) {
-    String moneyBag = "💰"; 
-    String headerText = String.format("%s %s\t%10s, %-10s\t%s\t%s\t%s\t%s\t%s  %s", moneyBag, "Emp ID", "Name: Last", "First",
-        "Hours Worked", "Hourly Rate", "Regular Pay", "Overtime Pay", "Total Pay", moneyBag);
-    String bills = ""; for (int i = 0; i <= headerText.length()/6; i++) bills += "💵💴💶💷";
+  private static void displayData(ArrayList<String> outputData) {
+    String moneyBag = "💰";
+    String headerText = String.format("%s %s\t%10s, %-10s\t%s\t%s\t%s\t%s\t%s  %s", moneyBag, "Emp ID", "Name: Last",
+        "First", "Hours Worked", "Hourly Rate", "Regular Pay", "Overtime Pay", "Total Pay", moneyBag);
+    String bills = "";
+    for (int i = 0; i <= headerText.length() / 6; i++)
+      bills += "💵💴💶💷";
     String moneyLine = String.format("%s%s%s", moneyBag, bills, moneyBag);
     String dataLines = "";
     for (String dataLine : outputData) {
@@ -93,5 +92,9 @@ public class PayManager {
     }
     System.out.printf("%s\n%s\n%s\n%s%s\n", moneyLine, headerText, moneyLine, dataLines, moneyLine);
 
+  }
+
+  private static String ProperName(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
   }
 }

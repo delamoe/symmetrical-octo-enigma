@@ -10,17 +10,6 @@
       "mainClass": "PayManager",
       "args": "",
       "projectName": "HW9"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - Driver",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "console": "internalConsole",
-      "stopOnEntry": false,
-      "mainClass": "Driver",
-      "args": "",
-      "projectName": "HW8"
     }
   ]
 }

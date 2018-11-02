@@ -6,7 +6,7 @@
      *
      * Developer:	E de la Montaña
      *
-     * Date		  :	10/25/2018
+     * Date		  :	10/28/2018
 */
 
 import java.util.ArrayList;
@@ -28,8 +28,16 @@ public class Driver {
       new Periodical("Scientific American", "Nature Publishing Group", "1845", "Popular science", "Monthly", "Mariette DiChristina")
     };
 
+    /* for (Publication publication : publicationEntries) {
+      publications.add(publication);
+      System.out.println(publication.toString() + "\n");
+    } */
+
     for (Publication publication : publicationEntries) {
       publications.add(publication);
+    }
+    
+    for (Publication publication : publications) {
       System.out.println(publication.toString() + "\n");
     }
   }

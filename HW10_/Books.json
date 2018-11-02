@@ -1,0 +1,54 @@
+{
+  "books": [
+    {
+      "title": "The Dark Tower",
+      "publisher": "Donald M. Grant",
+      "year": "1982",
+      "genre": "Fantasy",
+      "author": "Stephen King",
+      "isbn": "9780743254564",
+      "libOfCong": "2006271051",
+      "pages": "845"
+    },
+    {
+      "title": "Foundation and Earth",
+      "publisher": "Doubleday",
+      "year": "1986",
+      "genre": "Science Fiction",
+      "author": "Issac Asimov",
+      "isbn": "0246130474",
+      "libOfCong": "87162264",
+      "pages": "462"
+    },
+    {
+      "title": "Macroscope",
+      "publisher": "Avon Books",
+      "year": "1969",
+      "genre": "Science Fiction",
+      "author": "Piers Anthony",
+      "isbn": "0839828993",
+      "libOfCong": "85021860",
+      "pages": "480"
+    },
+    {
+      "title": "Imajica",
+      "publisher": "HarperCollins",
+      "year": "1991",
+      "genre": "Fantasy",
+      "author": "Clive Barker",
+      "isbn": "0060937262",
+      "libOfCong": "2001059130",
+      "pages": "880"
+    },
+    {
+      "title": "The Dosadi Experiment",
+      "publisher": "G. P. Putnam's Sons",
+      "year": "1977",
+      "genre": "Science Fiction",
+      "author": "Frank Herbert",
+      "isbn": "039912022X",
+      "libOfCong": "77003653",
+      "pages": "336"
+    }
+  ]
+}
