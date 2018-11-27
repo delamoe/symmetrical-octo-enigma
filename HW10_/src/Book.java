@@ -22,36 +22,38 @@ class Book extends Publication {
 	private int libraryOfCongressNum;
 	private int pages;
 
-	public static int recordLength = 0;
+	private long recordLength = 0;
 
-	public void setRecordLength() {
-		recordLength = (getTitleLength() * 2) + (getAuthorLength() * 2) + (getPublicationDateLength() * 2) + (getSubjectLength() * 2)
-				+ (Integer.SIZE / 8) + (Double.SIZE / 8) + (getIsbnLength() * 2) + (Integer.SIZE / 8);
-	}
-
-	public int getRecordLength() {
-		return recordLength;
-	}
-
+	
 	public Book() {
-		super("", "", "", "", 0);
+		super(0, "", "", "", "", 0);
+		setBookID(0);
 		setAuthor("");
 		setIsbn("");
 		setLibraryOfCongressNum(0);
 		setPages(0);
 		setRecordLength();
 	}
-
-	public Book(String title, String publisher, String publicationDate, String subject, double price, String author,
-			String isbn, int libraryOfCongressNum, int pages) {
-		super(title, publisher, publicationDate, subject, price);
+	
+	public Book(long bookID, String title, String publisher, String yearPublished, String subject, double price, String author,
+	String isbn, int libraryOfCongressNum, int pages) {
+		super(bookID, title, publisher, yearPublished, subject, price);
+		setBookID(bookID);
 		setAuthor(author);
 		setIsbn(isbn);
 		setLibraryOfCongressNum(libraryOfCongressNum);
 		setPages(pages);
 		setRecordLength();
 	}
+	
+	public void setRecordLength(/* long recordLength */) {
+		// this.recordLength = recordLength;
+		recordLength = (Long.SIZE / 8) + (getTitleLength() * 2) + (getAuthorLength() * 2) + (getPublisherLength() * 2)	+ (getyearPublishedLength() * 2) + (getSubjectLength() * 2)	+ (Integer.SIZE / 8) + (Double.SIZE / 8) + (getIsbnLength() * 2) + (Integer.SIZE / 8);
+	}
 
+	public long getRecordLength() {
+		return recordLength;
+	}
 	public String getAuthor() {
 		return this.author;
 	}
@@ -96,11 +98,20 @@ class Book extends Publication {
 		return ISBN_LENGTH;
 	}
 
+	/* public static String readString(Book ) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < book.getTitleLength(); i++) {
+      sb.append(bookFile.readChar());
+    }
+    book.setTitle(sb.toString());
+		sb.setLength(0);
+	} */
+
 	public String tooString() {
-		return "Book :" + /* super.toString() + */
+		return "Book: " + getBookID() + /* super.toString() + */
 				"\nTitle . . . . . . . . . . . . . " + this.getTitle() + "\nAuthor . . . . . . . . . . . .  " + this.author
 				+ "\nPublisher . . . . . . . . . . . " + this.getPublisher() + "\nPublication Date . . . . . . .  "
-				+ this.getPublicationDate() + "\nSubject . . . . . . . . . . . . " + this.getSubject()
+				+ this.getyearPublished() + "\nSubject . . . . . . . . . . . . " + this.getSubject()
 				+ "\nPages. . . . . . . . . . . . .  " + this.pages + " Pp" + "\nPrice . . . . . . . . . . . . . $"
 				+ this.getPrice() + "\nISBN . . . . . . . . . . . . .  " + this.isbn + "\nLibrary of Congress Number. . . "
 				+ this.libraryOfCongressNum + "\n";
@@ -108,11 +119,11 @@ class Book extends Publication {
 
 	@Override
 	public String toString() {
-		return "Book :" + /* super.toString() + */
+		return "Book: " + getBookID() + /* super.toString() + */
 				"\nTitle . . . . . . . . . . . . . " + this.getTitle() +
 				"\nAuthor . . . . . . . . . . . .  " + this.author +
 				"\nPublisher . . . . . . . . . . . " + this.getPublisher() +
-				"\nPublication Date . . . . . . .  " + this.getPublicationDate() +
+				"\nPublication Date . . . . . . .  " + this.getyearPublished() +
 				"\nSubject . . . . . . . . . . . . " + this.getSubject() +
 				"\nPages. . . . . . . . . . . . .  " + Integer.toString(this.pages) + " Pp" +
 				"\nPrice . . . . . . . . . . . . . $" + Double.toString(this.getPrice()) +

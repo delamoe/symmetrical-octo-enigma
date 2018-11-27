@@ -10,23 +10,25 @@
 */
 
 public abstract class Publication {
-
+  // 
   final private int TITLE_LENGTH = 21;
   final private int PUBLISHER_LENGTH = 25;
   final private int PUBLICATION_DATE_LENGTH = 4;
   final private int SUBJECT_LENGTH = 25;
   // final private int PRICE_LENGTH = 4;
 
+  private long bookID;
   private String title;
   private String publisher;
-  private String publicationDate;
+  private String yearPublished;
   private String subject;
   private double price;
 
-  public Publication(String title, String publisher, String publicationDate, String subject, double price) {
+  public Publication(long bookID, String title, String publisher, String yearPublished, String subject, double price) {
+    setBookID(bookID);
     setTitle(title);
     setPublisher(publisher);
-    setPublicationDate(publicationDate);
+    setyearPublished(yearPublished);
     setSubject(subject);
     setPrice(price);
   }
@@ -40,6 +42,14 @@ public abstract class Publication {
     return sb;
   }
 
+  public void setBookID(long bookID) {
+    this.bookID = bookID;
+  }
+
+  public long getBookID() {
+    return this.bookID;
+  }
+  
   public String getTitle() {
     return this.title;
   }
@@ -61,13 +71,13 @@ public abstract class Publication {
     sb.setLength(0);
   }
 
-  public String getPublicationDate() {
-    return this.publicationDate;
+  public String getyearPublished() {
+    return this.yearPublished;
   }
 
-  public void setPublicationDate(String publicationDate) {
-    sb.append(publicationDate);
-    this.publicationDate = setCorrectLength(sb, PUBLICATION_DATE_LENGTH).toString();
+  public void setyearPublished(String yearPublished) {
+    sb.append(yearPublished);
+    this.yearPublished = setCorrectLength(sb, PUBLICATION_DATE_LENGTH).toString();
     sb.setLength(0);
   }
 
@@ -97,7 +107,7 @@ public abstract class Publication {
     return PUBLISHER_LENGTH;
   }
 
-  public int getPublicationDateLength() {
+  public int getyearPublishedLength() {
     return PUBLICATION_DATE_LENGTH;
   }
 
@@ -113,7 +123,7 @@ public abstract class Publication {
    * @Override public String toString() { return
    * "\nTitle  . . . . . . . . . . . .  " + this.getTitle() +
    * "\nPublisher . . . . . . . . . . . " + this.getPublisher() +
-   * "\nPublication Date . . . . . . .  " + this.getPublicationDate() +
+   * "\nPublication Date . . . . . . .  " + this.getyearPublished() +
    * "\nSubject . . . . . . . . . . . . " + this.getSubject() +
    * "\nPrice . . . . . . . . . . . . . " + this.getPrice(); }
    */
