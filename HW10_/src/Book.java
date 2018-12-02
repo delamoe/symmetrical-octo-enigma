@@ -7,15 +7,13 @@
 *
 * Developer     :	E de la Montaña
 *
-* Date          :       11/22/2018
+* Date          : 11/27/2018
 */
 
 class Book extends Publication {
 
 	final private int AUTHOR_LENGTH = 19;
 	final private int ISBN_LENGTH = 10;
-	// final private int LIBRARY_OF_CONGRESS_NUM_LENGTH = 8;
-	// final private int PAGES_LENGTH = 4;
 
 	private String author;
 	private String isbn;
@@ -46,8 +44,7 @@ class Book extends Publication {
 		setRecordLength();
 	}
 	
-	public void setRecordLength(/* long recordLength */) {
-		// this.recordLength = recordLength;
+	public void setRecordLength() {
 		recordLength = (Long.SIZE / 8) + (getTitleLength() * 2) + (getAuthorLength() * 2) + (getPublisherLength() * 2)	+ (getyearPublishedLength() * 2) + (getSubjectLength() * 2)	+ (Integer.SIZE / 8) + (Double.SIZE / 8) + (getIsbnLength() * 2) + (Integer.SIZE / 8);
 	}
 
@@ -98,28 +95,10 @@ class Book extends Publication {
 		return ISBN_LENGTH;
 	}
 
-	/* public static String readString(Book ) {
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < book.getTitleLength(); i++) {
-      sb.append(bookFile.readChar());
-    }
-    book.setTitle(sb.toString());
-		sb.setLength(0);
-	} */
-
-	public String tooString() {
-		return "Book: " + getBookID() + /* super.toString() + */
-				"\nTitle . . . . . . . . . . . . . " + this.getTitle() + "\nAuthor . . . . . . . . . . . .  " + this.author
-				+ "\nPublisher . . . . . . . . . . . " + this.getPublisher() + "\nPublication Date . . . . . . .  "
-				+ this.getyearPublished() + "\nSubject . . . . . . . . . . . . " + this.getSubject()
-				+ "\nPages. . . . . . . . . . . . .  " + this.pages + " Pp" + "\nPrice . . . . . . . . . . . . . $"
-				+ this.getPrice() + "\nISBN . . . . . . . . . . . . .  " + this.isbn + "\nLibrary of Congress Number. . . "
-				+ this.libraryOfCongressNum + "\n";
-	}
-
 	@Override
 	public String toString() {
 		return "Book: " + getBookID() + /* super.toString() + */
+		// disabled the call to super, to reorder data output
 				"\nTitle . . . . . . . . . . . . . " + this.getTitle() +
 				"\nAuthor . . . . . . . . . . . .  " + this.author +
 				"\nPublisher . . . . . . . . . . . " + this.getPublisher() +

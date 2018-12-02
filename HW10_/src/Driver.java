@@ -7,7 +7,7 @@
 *
 * Developer     :	E de la Montaña
 *
-* Date          : 11/22/2018
+* Date          : 11/27/2018
 */
 
 import java.io.EOFException;
@@ -32,7 +32,7 @@ public class Driver {
     } catch (IOException e) {
       System.out.println("\nIOException during attempt to allocate \"" + BOOK_FILE + "\": " + e.getMessage() + ".\n");
     }
-    // Using an array in order to compile the List 
+    // Instantiating an array in order to compile the List 
     // through iteration instead of coding multiple calls.
     Book[] books = new Book[] {
         new Book(1, "The Dark Toower", "Donald M. Grant", "1982", "Science Fiction - Fantasy", 3.95, "Stephen King",
@@ -50,7 +50,7 @@ public class Driver {
       bookList.add(book);
     }
 
-    System.out.println("\nWrite bookList from List to file.\n");
+    System.out.println("\nWrite data to bookList (" + BOOK_FILE + ") from List to file.");
 
     try {
       long startByte = 0;
@@ -58,6 +58,8 @@ public class Driver {
         writeData(bookFile, book, startByte);
         startByte = bookFile.getFilePointer();
       }
+
+      System.out.println("\r==> " + bookFile.length() + " Bytes have been written to file, " + BOOK_FILE + " (" + bookFile.toString() + ".)");
     } catch (IOException e) {
       System.out.println("\nA generic IOException has occurred while attempting to write data to \"" + BOOK_FILE
           + "\": " + e.toString());
@@ -150,102 +152,40 @@ public class Driver {
   throws IOException, EOFException, Exception {
     bookFile.seek(startByte);
     StringBuffer sb = new StringBuffer();
-    // read BookID
     book.setBookID(bookFile.readLong());
-    // read Title
     for (int i = 0; i < book.getTitleLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setTitle(sb.toString());
     sb.setLength(0);
-    // read Author
     for (int i = 0; i < book.getAuthorLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setAuthor(sb.toString());
     sb.setLength(0);
-    // read Publisher
     for (int i = 0; i < book.getPublisherLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setPublisher(sb.toString());
     sb.setLength(0);
-    // read yearPublished
     for (int i = 0; i < book.getyearPublishedLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setyearPublished(sb.toString());
     sb.setLength(0);
-    // read Subject
     for (int i = 0; i < book.getSubjectLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setSubject(sb.toString());
     sb.setLength(0);
-    // read Pages
     book.setPages(bookFile.readInt());
-    // read Price
     book.setPrice(bookFile.readDouble());
-    // read Isbn
     for (int i = 0; i < book.getIsbnLength(); i++) {
       sb.append(bookFile.readChar());
     }
     book.setIsbn(sb.toString());
     sb.setLength(0);
-    // read Library of Congress Number
     book.setLibraryOfCongressNum(bookFile.readInt());
     System.out.println(book.toString());
   }
-  
-  /*
-  * public static void writeData(RandomAccessFile bookFile, Book book) throws
-  * IOException, EOFException, Exception { bookFile.writeLong(book.getBookID());
-    * // System.out.println("Long: " + book.getBookID());
-    * bookFile.writeChars(book.getTitle()); // System.out.println("Chars: " +
-    * book.getTitle()); bookFile.writeChars(book.getAuthor()); //
-    * System.out.println("Chars: " + book.getAuthor());
-    * bookFile.writeChars(book.getPublisher()); // System.out.println("Chars: " +
-    * book.getPublisher()); bookFile.writeChars(book.getyearPublished()); //
-    * System.out.println("Chars: " + book.getyearPublished());
-    * bookFile.writeChars(book.getSubject()); // System.out.println("Chars: " +
-    * book.getSubject()); bookFile.writeInt(book.getPages()); //
-    * System.out.println("Int: " + book.getPages());
-    * bookFile.writeDouble(book.getPrice()); // System.out.println("Double: " +
-    * book.getPrice()); bookFile.writeChars(book.getIsbn()); //
-    * System.out.println("Chars: " + book.getIsbn());
-    * bookFile.writeInt(book.getLibraryOfCongressNum()); //
-    * System.out.println("Int: " + book.getLibraryOfCongressNum()); }
-    */
-  }
-  /*
-  * public static void readData(RandomAccessFile bookFile, Book book) throws
-  * IOException, EOFException, Exception { StringBuffer sb = new StringBuffer();
-    * // read BookID book.setBookID(bookFile.readLong());
-    * System.out.println("BookID: " + bookFile.readLong()); // read Title for (int
-    * i = 0; i < book.getTitleLength(); i++) { sb.append(bookFile.readChar()); }
-    * book.setTitle(sb.toString()); // System.out.println("Title: " +
-   * sb.toString()); sb.setLength(0); // read Author for (int i = 0; i <
-   * book.getAuthorLength(); i++) { sb.append(bookFile.readChar()); }
-   * book.setAuthor(sb.toString()); // System.out.println("Author: " +
-   * sb.toString()); sb.setLength(0); // read Publisher for (int i = 0; i <
-   * book.getPublisherLength(); i++) { sb.append(bookFile.readChar()); }
-   * book.setPublisher(sb.toString()); // System.out.println("Publisher: " +
-   * sb.toString()); sb.setLength(0); // read yearPublished for (int i = 0; i <
-   * book.getyearPublishedLength(); i++) { sb.append(bookFile.readChar()); }
-   * book.setyearPublished(sb.toString()); //
-   * System.out.println("yearPublished: " + sb.toString()); sb.setLength(0); //
-   * read Subject for (int i = 0; i < book.getSubjectLength(); i++) {
-   * 
-   * sb.append(bookFile.readChar()); } book.setSubject(sb.toString()); //
-   * System.out.println("Subject: " + sb.toString()); sb.setLength(0); // read
-   * Pages book.setPages(bookFile.readInt()); // System.out.println("Pages: " +
-   * bookFile.readInt()); // read Price book.setPrice(bookFile.readDouble()); //
-   * System.out.println("Price: " + bookFile.readDouble()); // read Isbn for (int
-   * i = 0; i < book.getIsbnLength(); i++) { sb.append(bookFile.readChar()); }
-   * book.setIsbn(sb.toString()); // System.out.println("Isbn: " + sb.toString());
-   * sb.setLength(0); // read Library of Congress Number
-   * book.setLibraryOfCongressNum(bookFile.readInt()); //
-   * System.out.println("LibraryOfCongressNum: " + bookFile.readInt());
-   * System.out.println(book.toString()); }
-   */
-  
+}

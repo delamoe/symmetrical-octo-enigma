@@ -6,7 +6,7 @@
 *
 * Developer :	E de la Montaña
 *
-* Date		  :	11/22/2018
+* Date		  :	11/27/2018
 */
 
 public abstract class Publication {
@@ -114,17 +114,13 @@ public abstract class Publication {
   public int getSubjectLength() {
     return SUBJECT_LENGTH;
   }
-
-  public String tooString() {
-    return "";
-  }
-
-  /*
-   * @Override public String toString() { return
-   * "\nTitle  . . . . . . . . . . . .  " + this.getTitle() +
-   * "\nPublisher . . . . . . . . . . . " + this.getPublisher() +
-   * "\nPublication Date . . . . . . .  " + this.getyearPublished() +
-   * "\nSubject . . . . . . . . . . . . " + this.getSubject() +
-   * "\nPrice . . . . . . . . . . . . . " + this.getPrice(); }
-   */
+  
+  @Override
+  public String toString() { return
+  "\nTitle  . . . . . . . . . . . .  " + this.getTitle() +
+  "\nPublisher . . . . . . . . . . . " + this.getPublisher() +
+  "\nPublication Date . . . . . . .  " + this.getyearPublished() +
+  "\nSubject . . . . . . . . . . . . " + this.getSubject() +
+  "\nPrice . . . . . . . . . . . . . " + this.getPrice(); }
+  
 }
